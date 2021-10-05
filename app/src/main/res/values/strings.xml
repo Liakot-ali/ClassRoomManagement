@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">Class Room Management</string>
+    <string name="signInButton">Sign In</string>
+    <string name="registerButton">Register</string>
+    <string name="updateButton">Update</string>
+    <string name="updateProfileButton">Update Profile</string>
+    <string name="contactWithCrButton">Contact With CR</string>
+    <string name="enrollButton">Enroll</string>
+    <string name="bookedButton">Booked</string>
+    <string name="addAnImageButton">Add an Image</string>
+
+    <string name="forget_password">Forget Password?</string>
+    <string name="home_menu">Home Menu</string>
+    <string name="gallary_menu">Gallery Menu</string>
+    <string name="menu_slideshow">Menu Slideshow</string>
+
+    <string name="wajedBuilding">Dr. M A Wajed Building</string>
+    <string name="academicBuilding1">Academic Building-1</string>
+    <string name="academicBuilding2">Academic Building-2</string>
+    <string name="academicBuilding3">Academic Building-3</string>
+    <string name="academicBuilding4">Academic Building-4</string>
+
+    <string name="ground_floor">Ground Floor\n(১ম তলা)</string>
+    <string name="second_floor">Second Floor\n(৩য় তলা)</string>
+    <string name="third_floor">Third Floor\n(৪র্থ তলা)</string>
+    <string name="forth_floor">Forth Floor\n(৫ম তলা)</string>
+    <string name="fifth_floor">Fifth Floor\n(৬ষ্ঠ তলা)</string>
+    <string name="sixth_floor">Sixth Floor\n(৭ম তলা)</string>
+    <string name="seventh_floor">Seventh Floor\n(৮ম তলা)</string>
+    <string name="eighth_floor">Eighth Floor\n(৯ম তলা)</string>
+    <string name="ninth_floor">Ninth Floor\n(১০ম তলা)</string>
+    <string name="first_floor">First Floor\n(২য় তলা)</string>
+
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+
+    <dimen name="normal_text_size">20sp</dimen>
+    <dimen name="toolbar_text_size">28sp</dimen>
+    <dimen name="button_size">20sp</dimen>
+
+
+    <string-array name="departmentSpinner2">
+
+        <item>Agronomy (AGN)</item>
+        <item>Horticulture (HRT)</item>
+        <item>Soil Science (SSC)</item>
+        <item>Entomology (ENT)</item>
+        <item>Plant Pathology (PLP)</item>
+        <item>Genetics and Planet Breeding (GPB)</item>
+        <item>Crop Physiology and Ecology (CPE)</item>
+        <item>Agricultural Extension (AEX)</item>
+        <item>Agricultural Chemistry (ACH)</item>
+        <item>Agroforestry and Environment (AGF)</item>
+        <item>Biochemistry and Molecular Biology (BMB)</item>
+
+        <item>Computer Science and Engineering (CSE)</item>
+        <item>Electrical and Electronics Engineering (EEE)</item>
+        <item>Electronics and Communication Engineering (ECE)</item>
+
+        <item>Management (MGT)</item>
+        <item>Finance and Banking (FIB)</item>
+        <item>Marketing (MKT)</item>
+        <item>Accounting (ACT)</item>
+
+        <item>Fisheries Biology and Genetics (FBG)</item>
+        <item>Fisheries Management (FMG)</item>
+        <item>Fisheries Technology (FTL)</item>
+        <item>Aquaculture (AQC)</item>
+
+        <item>Microbiology (MIC)</item>
+        <item>Dairy and Poultry Science (DPS)</item>
+        <item>Anatomy and Histology (ANH)</item>
+        <item>General Animal Science and Nutrition (ASN)</item>
+        <item>Genetics and Animal Breeding (GAB)</item>
+        <item>Medical, Surgery and Obstetrics (MSO)</item>
+        <item>Physiology and Pharmacology (PPH)</item>
+
+        <item>Agricultural and Industrial Engineering (AIE)</item>
+        <item>Food Processing and Preservation (FPP)</item>
+        <item>Food Engineering and Technology (FET)</item>
+        <item>Food Science and Nutrition (FSN)</item>
+        <item>Architecture (ARC)</item>
+        <item>Civil Engineering (CIE)</item>
+        <item>Mechanical Engineering (MEE)</item>
+
+        <item>Chemistry (CHE)</item>
+        <item>Physics (PHY)</item>
+        <item>Mathematics (MAT)</item>
+        <item>Statistics (STT)</item>
+
+        <item>Economics (ECN)</item>
+        <item>Sociology (SOC)</item>
+        <item>English (ENG)</item>
+        <item>Development Studies (DES)</item>
+
+    </string-array>
+
+    <string-array name="levelSpinner">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="semesterSpinner">
+        <item>I</item>
+        <item>II</item>
+    </string-array>
+</resources>
