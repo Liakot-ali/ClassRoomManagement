@@ -25,7 +25,7 @@
                 android:id="@+id/toolbarDemo"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary" />
+                android:background="@color/toolbarBackgroundColor" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,7 +41,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Contact With Us"
-                    android:textSize="@dimen/toolbar_text_size" />
+                    android:textColor="@color/toolbarTextColor"
+                    android:textSize="@dimen/toolbar_text" />
             </LinearLayout>
 
         </RelativeLayout>
@@ -61,7 +62,9 @@
                     android:id="@+id/textView17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="Write your opinion"
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="@dimen/normal_text" />
 
                 <EditText
                     android:id="@+id/editText"
@@ -69,25 +72,18 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:hint="Write here..." />
 
                 <Button
                     android:id="@+id/button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@android:style/Widget.Button.Small"
+                    android:textSize="@dimen/button_text"
+                    android:textColor="@color/buttonTextColor"
+                    android:background="@drawable/button_design"
                     android:text="Button" />
 
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/textView28"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
             </LinearLayout>
         </ScrollView>
 

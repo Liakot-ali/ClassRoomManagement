@@ -3,4 +3,14 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+
+    <color name="normalTextColor">#050505</color>
+    <color name="toolbarTextColor">#f7f7f7</color>
+    <color name="toolbarBackgroundColor">#03DAC5</color>
+    <color name="buttonTextColor">#ffffff</color>
+    <color name="buttonBackgroundColor">#0777B3</color>
+    <color name="smallTextColor">#5bbfb8</color>
 </resources>

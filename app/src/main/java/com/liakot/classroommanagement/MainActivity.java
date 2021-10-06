@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView forgotPassword;
     Button loginUserRegisterButton;
     Button loginUserLoginButton;
     EditText logInUserEmail, logInUserPassword;
@@ -32,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         InitializeAll();
+
     }
 
     private void InitializeAll() {
@@ -44,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.loginProgressbar);
         logInUserEmail = findViewById(R.id.logInUserEmail);
         logInUserPassword = findViewById(R.id.logInUserPassword);
-        forgotPassword = findViewById(R.id.forgetPasswordLink);
 
         loginUserRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,12 +63,6 @@ public class MainActivity extends AppCompatActivity {
 //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //                startActivity(intent);
-            }
-        });
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
     }

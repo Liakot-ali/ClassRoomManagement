@@ -23,6 +23,9 @@
             android:id="@+id/addUserNameButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="@dimen/button_text"
+            android:background="@drawable/button_design"
             android:text="Add Message" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,6 +47,7 @@ public class UserProfileFragment extends Fragment {
         Button updateProfileButton = view.findViewById(R.id.updateProfileButton);
         progressBar=view.findViewById(R.id.progressBar2);
         progressBar.setVisibility(View.VISIBLE);
+
         userProfilePicture = view.findViewById(R.id.userProfilePicture);
         userName = view.findViewById(R.id.userName);
         userEmail = view.findViewById(R.id.userEmail);

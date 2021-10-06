@@ -61,7 +61,8 @@
                                 android:layout_height="match_parent"
                                 android:background="@drawable/ic_launcher_background"
                                 android:text="@string/wajedBuilding"
-                                android:textSize="@dimen/button_size" />
+                                android:textColor="@color/buttonTextColor"
+                                android:textSize="@dimen/button_text" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -109,7 +110,8 @@
                                 android:layout_height="match_parent"
                                 android:background="@drawable/ic_launcher_background"
                                 android:text="@string/academicBuilding1"
-                                android:textSize="@dimen/button_size" />
+                                android:textColor="@color/buttonTextColor"
+                                android:textSize="@dimen/button_text" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -165,7 +167,8 @@
                                 android:layout_height="match_parent"
                                 android:background="@drawable/ic_launcher_background"
                                 android:text="@string/academicBuilding2"
-                                android:textSize="@dimen/button_size"
+                                android:textColor="@color/buttonTextColor"
+                                android:textSize="@dimen/button_text"
                                 tools:ignore="DuplicateIds" />
                         </LinearLayout>
 
@@ -215,7 +218,8 @@
                                 android:layout_height="match_parent"
                                 android:background="@drawable/ic_launcher_background"
                                 android:text="@string/academicBuilding3"
-                                android:textSize="@dimen/button_size"
+                                android:textColor="@color/buttonTextColor"
+                                android:textSize="@dimen/button_text"
                                 tools:ignore="DuplicateIds" />
                         </LinearLayout>
 
@@ -286,7 +290,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/ic_launcher_background"
-                                android:textSize="@dimen/button_size"
+                                android:textColor="@color/buttonTextColor"
+                                android:textSize="@dimen/button_text"
                                 tools:ignore="DuplicateIds" />
                         </LinearLayout>
 
@@ -300,9 +305,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:textSize="@dimen/button_size"
+                                android:textColor="@color/buttonTextColor"
+                                android:textSize="@dimen/button_text"
                                 android:text="@string/academicBuilding4"
-                                android:textColor="#090909" />
+                                />
                         </LinearLayout>
 
                         <LinearLayout

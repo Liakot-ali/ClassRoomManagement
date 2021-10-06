@@ -44,8 +44,9 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:padding="5sp"
-                        android:text=""
-                        android:textSize="@dimen/normal_text_size" />
+                        android:text="User Name"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <TextView
                         android:id="@+id/userEmail"
@@ -54,16 +55,18 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:padding="5sp"
-                        android:text=""
-                        android:textSize="@dimen/normal_text_size" />
+                        android:text="User Email"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <TextView
                         android:id="@+id/userDepartment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5sp"
-                        android:text=""
-                        android:textSize="@dimen/normal_text_size" />
+                        android:text="Department"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <ProgressBar
                         android:id="@+id/progressBar2"
@@ -83,16 +86,18 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="50"
-                            android:text=""
-                            android:textSize="@dimen/normal_text_size" />
+                            android:text="Level"
+                            android:textColor="@color/normalTextColor"
+                            android:textSize="@dimen/normal_text" />
 
                         <TextView
                             android:id="@+id/userSemester"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="50"
-                            android:text=""
-                            android:textSize="@dimen/normal_text_size" />
+                            android:text="Semester:"
+                            android:textColor="@color/normalTextColor"
+                            android:textSize="@dimen/normal_text" />
                     </LinearLayout>
 
                     <TextView
@@ -100,24 +105,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5sp"
-                        android:text=""
-                        android:textSize="@dimen/normal_text_size" />
+                        android:text="Student ID:"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <TextView
                         android:id="@+id/userPhoneNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5sp"
-                        android:text=""
-                        android:textSize="@dimen/normal_text_size" />
+                        android:text="Phone Number"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <TextView
                         android:id="@+id/userSession"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5sp"
-                        android:text=""
-                        android:textSize="@dimen/normal_text_size" />
+                        android:text="Session:"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                 </LinearLayout>
 
@@ -133,7 +141,9 @@
                         android:layout_height="wrap_content"
                         android:padding="5sp"
                         android:text="@string/updateProfileButton"
-                        android:textSize="@dimen/button_size" />
+                        android:background="@drawable/button_design"
+                        android:textColor="@color/buttonTextColor"
+                        android:textSize="@dimen/button_text" />
                 </LinearLayout>
 
             </LinearLayout>

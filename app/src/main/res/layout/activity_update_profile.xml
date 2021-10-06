@@ -22,7 +22,7 @@
                 android:id="@+id/toolbarDemo"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary" />
+                android:background="@color/toolbarBackgroundColor" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,7 +38,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Update Profile"
-                    android:textSize="@dimen/toolbar_text_size" />
+                    android:textColor="@color/toolbarTextColor"
+                    android:textSize="@dimen/toolbar_text" />
             </LinearLayout>
 
         </RelativeLayout>
@@ -78,7 +79,8 @@
                         android:layout_weight="1"
                         android:background="@drawable/button_design"
                         android:text="@string/addAnImageButton"
-                        android:textSize="@dimen/button_size" />
+                        android:textColor="@color/buttonTextColor"
+                        android:textSize="@dimen/button_text" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -94,7 +96,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Name"
-                        android:textSize="@dimen/normal_text_size" />
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <EditText
                         android:id="@+id/updateUserName"
@@ -110,7 +113,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Email"
-                        android:textSize="20sp" />
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <EditText
                         android:id="@+id/updateUserEmail"
@@ -126,7 +130,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Phone Number"
-                        android:textSize="20sp" />
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <EditText
                         android:id="@+id/updateUserPhoneNumber"
@@ -147,14 +152,16 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="5"
                             android:text="Student ID:"
-                            android:textSize="@dimen/normal_text_size"/>
+                            android:textColor="@color/normalTextColor"
+                            android:textSize="@dimen/normal_text"/>
                         <TextView
                             android:id="@+id/userStudentId"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="5"
                             android:text="1234567"
-                            android:textSize="20sp" />
+                            android:textColor="@color/normalTextColor"
+                            android:textSize="@dimen/normal_text" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -174,7 +181,8 @@
                         android:layout_weight="65"
                         android:layout_gravity="center"
                         android:text="Department"
-                        android:textSize="20sp" />
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <Spinner
                         android:id="@+id/updateDepartmentSpinner"
@@ -198,7 +206,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="Level"
-                        android:textSize="20sp" />
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <Spinner
                         android:id="@+id/updateLevelSpinner"
@@ -212,7 +221,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="Semester"
-                        android:textSize="20sp" />
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <Spinner
                         android:id="@+id/updateSemesterSpinner"
@@ -235,7 +245,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:text="Session"
-                        android:textSize="20sp" />
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text" />
 
                     <EditText
                         android:id="@+id/updateUserSession"
@@ -252,7 +263,8 @@
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
                     android:text="Old Password"
-                    android:textSize="20sp" />
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="@dimen/normal_text" />
 
                 <EditText
                     android:id="@+id/updateOldPassword"
@@ -271,7 +283,8 @@
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
                     android:text="New Password"
-                    android:textSize="20sp" />
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="@dimen/normal_text" />
 
                 <EditText
                     android:id="@+id/updateNewPassword"
@@ -290,7 +303,8 @@
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
                     android:text="Confirm New Password"
-                    android:textSize="20sp" />
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="@dimen/normal_text" />
 
                 <EditText
                     android:id="@+id/updateConfirmNewPassword"
@@ -317,7 +331,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:text="@string/updateButton"
-                        android:textSize="@dimen/button_size" />
+                        android:background="@drawable/button_design"
+                        android:textColor="@color/buttonTextColor"
+                        android:textSize="@dimen/button_text" />
 
                 </LinearLayout>
 

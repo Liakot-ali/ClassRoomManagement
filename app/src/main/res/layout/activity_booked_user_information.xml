@@ -28,7 +28,7 @@
                 android:id="@+id/toolbarDemo"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary" />
+                android:background="@color/toolbarBackgroundColor" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +44,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Booking Information"
-                    android:textSize="@dimen/toolbar_text_size" />
+                    android:textColor="@color/toolbarTextColor"
+                    android:textSize="@dimen/toolbar_text" />
             </LinearLayout>
 
         </RelativeLayout>
@@ -69,6 +70,8 @@
                         android:id="@+id/textView19"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text"
                         android:text="Course Name" />
 
                     <EditText
@@ -90,6 +93,8 @@
                         android:id="@+id/textView20"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text"
                         android:text="Course Code" />
 
                     <EditText
@@ -111,6 +116,8 @@
                         android:id="@+id/textView21"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/normal_text"
                         android:text="Course Teacher Name" />
 
                     <EditText
@@ -169,7 +176,9 @@
                 style="@android:style/Widget.Button.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/button_size"
+                android:textSize="@dimen/button_text"
+                android:background="@drawable/button_design"
+                android:textColor="@color/buttonTextColor"
                 android:text="@string/enrollButton" />
         </LinearLayout>
 
