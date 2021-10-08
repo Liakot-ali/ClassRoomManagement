@@ -104,13 +104,13 @@
 
                             <Button
                                 android:id="@+id/wGroundFloor"
+                                style="@android:style/Widget.Button.Small"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                style="@android:style/Widget.Button.Small"
-                                android:textSize="@dimen/button_text"
-                                android:textColor="@color/buttonTextColor"
-                                android:text="@string/ground_floor"
                                 android:background="@drawable/ic_launcher_background"
+                                android:text="@string/ground_floor"
+                                android:textColor="@color/buttonTextColor"
+                                android:textSize="@dimen/button_text"
                                 tools:ignore="DuplicateIds" />
                         </LinearLayout>
 
@@ -153,13 +153,13 @@
 
                             <Button
                                 android:id="@+id/wajedFirstFloor"
+                                style="@android:style/Widget.Button.Small"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                style="@android:style/Widget.Button.Small"
+                                android:background="@drawable/ic_launcher_background"
+                                android:text="@string/first_floor"
                                 android:textColor="@color/buttonTextColor"
                                 android:textSize="@dimen/button_text"
-                                android:text="@string/first_floor"
-                                android:background="@drawable/ic_launcher_background"
                                 tools:ignore="DuplicateIds" />
                         </LinearLayout>
 
@@ -214,13 +214,13 @@
 
                             <Button
                                 android:id="@+id/wajedSecondFloor"
+                                style="@android:style/Widget.Button.Small"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                style="@android:style/Widget.Button.Small"
-                                android:textColor="@color/buttonTextColor"
-                                android:textSize="@dimen/button_text"
+                                android:background="@drawable/ic_launcher_background"
                                 android:text="@string/second_floor"
-                                android:background="@drawable/ic_launcher_background" />
+                                android:textColor="@color/buttonTextColor"
+                                android:textSize="@dimen/button_text" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -260,13 +260,13 @@
 
                             <Button
                                 android:id="@+id/wajedThirdFloor"
+                                style="@android:style/Widget.Button.Small"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                style="@android:style/Widget.Button.Small"
-                                android:textColor="@color/buttonTextColor"
-                                android:textSize="@dimen/button_text"
+                                android:background="@drawable/ic_launcher_background"
                                 android:text="@string/third_floor"
-                                android:background="@drawable/ic_launcher_background" />
+                                android:textColor="@color/buttonTextColor"
+                                android:textSize="@dimen/button_text" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -292,21 +292,22 @@
                     </FrameLayout>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginBottom="25sp"
-                    android:baselineAligned="false"
                     android:layout_gravity="center"
+                    android:layout_marginBottom="25sp"
+                    android:layout_weight="1"
+                    android:baselineAligned="false"
                     android:orientation="horizontal">
 
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="25sp"
                         android:layout_marginRight="25sp"
                         android:layout_marginBottom="25sp"
-                        android:layout_marginLeft="25sp"
                         android:layout_weight="1">
 
                     </FrameLayout>
@@ -327,13 +328,13 @@
 
                             <Button
                                 android:id="@+id/wajedForthFloor"
+                                style="@android:style/Widget.Button.Small"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                style="@android:style/Widget.Button.Small"
+                                android:background="@drawable/ic_launcher_background"
+                                android:text="@string/forth_floor"
                                 android:textColor="@color/buttonTextColor"
                                 android:textSize="@dimen/button_text"
-                                android:text="@string/forth_floor"
-                                android:background="@drawable/ic_launcher_background"
                                 tools:ignore="DuplicateIds" />
                         </LinearLayout>
 
@@ -364,14 +365,28 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="25sp"
                         android:layout_marginRight="25sp"
                         android:layout_marginBottom="25sp"
-                        android:layout_marginLeft="25sp"
                         android:layout_weight="1">
 
                     </FrameLayout>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/addValueBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Button" />
+                </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
 

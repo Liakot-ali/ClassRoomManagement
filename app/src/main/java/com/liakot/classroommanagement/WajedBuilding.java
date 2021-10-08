@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WajedBuilding extends AppCompatActivity {
-
 
     String[] floor0RoomNo = {"Room No: 101", "Room No: 102", "Room No: 103", "Room No: 104", "Room No: 105",
             "Room No: 106", "Room No: 107", "Room No: 108", "Room No: 109", "Room No: 110", "Room No: 111",
@@ -100,63 +100,21 @@ public class WajedBuilding extends AppCompatActivity {
 
     Button wGroundFloor, wFirstFloor, wSecondFloor, wThirdFloor, wForthFloor;
     Toolbar toolbar;
-
-    DatabaseReference allBuildings;
+    FirebaseDatabase database;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wajed_building);
         InitializeAll();
-    }
 
-    private void InitializeAll() {
-
-        allBuildings = FirebaseDatabase.getInstance().getReference("All Buildings");
-
-        DatabaseReference wajedBuilding = allBuildings.child("Wajed Building");
-
-        wGroundFloor = findViewById(R.id.wGroundFloor);
-        wFirstFloor = findViewById(R.id.wajedFirstFloor);
-        wSecondFloor = findViewById(R.id.wajedSecondFloor);
-        wThirdFloor = findViewById(R.id.wajedThirdFloor);
-        wForthFloor = findViewById(R.id.wajedForthFloor);
-
-        DatabaseReference floor0 = wajedBuilding.child("Floor0");
-
-        final String[] groundStart = new String[100000], groundEnd = new String[100000], groundEnroll = new String[100000];
-
-
-        int i = 0;
-        for (String room : floor0RoomNo) {
-            RoomManagement obj1 = new RoomManagement(floor0RoomNo[i], floor0StartTime[i], floor0EndTime[i], floor0Enroll[i]);
-
-            floor0.child(room).setValue(obj1);
-//            floor0.child(room).child("Room").setValue(floor0RoomNo[i]);
-//            floor0.child(room).child("Start").setValue(groundStart[i]);
-//            floor0.child(room).child("End").setValue(groundEnd[i]);
-//            floor0.child(room).child("Status").setValue(groundEnroll[i]);
-            i++;
-        }
-
-        floor0.addListenerForSingleValueEvent(new ValueEventListener() {
+        Button addValue = findViewById(R.id.addValueBtn);
+        addValue.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int i = 0;
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    RoomManagement newObj= dataSnapshot.child(floor0RoomNo[i]).getValue(RoomManagement.class);
-//                    assert newObj != null;
-                    groundStart[i] = dataSnapshot.child(floor0RoomNo[i]).child("Start").getValue(String.class);
-                    groundEnd[i] = dataSnapshot.child(floor0RoomNo[i]).child("End").getValue(String.class);
-                    groundEnroll[i] = dataSnapshot.child(floor0RoomNo[i]).child("Status").getValue(String.class);
-
-                    i++;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onClick(View v) {
+                Intent intent = new Intent(WajedBuilding.this, AdminPageActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -164,14 +122,88 @@ public class WajedBuilding extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                DatabaseReference floor0Ref = database.getReference("AllBuildings").child("WajedBuilding").child("Floor0");
+                String floorRef = floor0Ref.toString();
+
                 Intent intent = new Intent(WajedBuilding.this, RoomActivity.class);
-                intent.putExtra("room no", floor0RoomNo);
-                intent.putExtra("start time", floor0StartTime);
-                intent.putExtra("end time", floor0EndTime);
-                intent.putExtra("enroll or booked", floor0Enroll);
+                intent.putExtra("FloorRef", floorRef);
+                intent.putExtra("ToolbarText", "Ground Floor");
                 startActivity(intent);
             }
         });
+        wFirstFloor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatabaseReference floor0Ref = database.getReference("AllBuildings").child("WajedBuilding").child("Floor1");
+                String floorRef = floor0Ref.toString();
+
+                Intent intent = new Intent(WajedBuilding.this, RoomActivity.class);
+                intent.putExtra("FloorRef", floorRef);
+                intent.putExtra("ToolbarText", "First Floor");
+                startActivity(intent);
+            }
+        });
+        wSecondFloor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatabaseReference floor0Ref = database.getReference("AllBuildings").child("WajedBuilding").child("Floor2");
+                String floorRef = floor0Ref.toString();
+
+                Intent intent = new Intent(WajedBuilding.this, RoomActivity.class);
+                intent.putExtra("FloorRef", floorRef);
+                intent.putExtra("ToolbarText", "Second Floor");
+                startActivity(intent);
+            }
+        });
+        wThirdFloor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatabaseReference floor0Ref = database.getReference("AllBuildings").child("WajedBuilding").child("Floor3");
+                String floorRef = floor0Ref.toString();
+
+                Intent intent = new Intent(WajedBuilding.this, RoomActivity.class);
+                intent.putExtra("FloorRef", floorRef);
+                intent.putExtra("ToolbarText", "Third Floor");
+                startActivity(intent);
+            }
+        });
+        wForthFloor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatabaseReference floor0Ref = database.getReference("AllBuildings").child("WajedBuilding").child("Floor4");
+                String floorRef = floor0Ref.toString();
+
+                Intent intent = new Intent(WajedBuilding.this, RoomActivity.class);
+                intent.putExtra("FloorRef", floorRef);
+                intent.putExtra("ToolbarText", "Forth Floor");
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void InitializeAll() {
+
+        toolbar = findViewById(R.id.toolbarDemo);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+
+        wGroundFloor = findViewById(R.id.wGroundFloor);
+        wFirstFloor = findViewById(R.id.wajedFirstFloor);
+        wSecondFloor = findViewById(R.id.wajedSecondFloor);
+        wThirdFloor = findViewById(R.id.wajedThirdFloor);
+        wForthFloor = findViewById(R.id.wajedForthFloor);
+
+
+
 
          /*
         wFirstFloor.setOnClickListener(new View.OnClickListener() {
@@ -252,11 +284,7 @@ public class WajedBuilding extends AppCompatActivity {
         */
 
 
-        toolbar = findViewById(R.id.toolbarDemo);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
     }
 
     @Override

@@ -48,6 +48,7 @@
                 android:layout_gravity="center"
                 android:text="@string/updateProfileButton"
                 android:textColor="@color/buttonTextColor"
+                android:padding="@dimen/textPad"
                 android:textSize="@dimen/button_text"
                 android:background="@drawable/button_design"/>
         </LinearLayout>

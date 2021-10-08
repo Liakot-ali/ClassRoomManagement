@@ -124,6 +124,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Your Student ID"
+                        android:textColor="@color/normalTextColor"
                         android:textSize="@dimen/normal_text" />
 
                     <EditText
@@ -248,7 +249,7 @@
                     android:layout_marginRight="10sp"
                     android:ems="10"
                     android:hint="Password"
-                    android:inputType="numberPassword" />
+                    android:inputType="textPassword" />
 
 
                 <LinearLayout

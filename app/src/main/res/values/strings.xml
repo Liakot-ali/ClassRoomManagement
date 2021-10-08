@@ -41,7 +41,8 @@
     <dimen name="small_text">16sp</dimen>
 
     <dimen name="buttonRadius">10sp</dimen>
-
+    <dimen name="textPad">5sp</dimen>
+    <dimen name="layPad">15sp</dimen>
 
 
     <string-array name="departmentSpinner2">

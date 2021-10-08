@@ -10,22 +10,28 @@ public class AddUserInformation {
     private String userSession;
     private String userPass;
     private String userEmail;
+    private String userDepartment;
+    private String userUniqueId;
+    String profilePicture;
 
-    AddUserInformation()
+    public AddUserInformation()
     {
 
     }
 
 
-    AddUserInformation(String userName, String userEmail, String userPhoneNumber, String userSID, String userLevel, String userSemester, String userSession, String userPass) {
+    public  AddUserInformation(String userName, String userEmail, String userPhoneNumber, String userSID, String userDepartment, String userLevel, String userSemester, String userSession, String userPass, String profilePicture, String userUniqueId) {
         this.userName=userName;
         this.userEmail=userEmail;
         this.userPhoneNumber = userPhoneNumber;
         this.userSID = userSID;
+        this.userDepartment = userDepartment;
         this.userLevel = userLevel;
         this.userSemester = userSemester;
         this.userSession = userSession;
         this.userPass = userPass;
+        this.profilePicture = profilePicture;
+        this.userUniqueId = userUniqueId;
     }
 
     public String getUserName() {
@@ -34,13 +40,6 @@ public class AddUserInformation {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
     }
 
     public String getUserPhoneNumber() {
@@ -79,6 +78,10 @@ public class AddUserInformation {
         return userSession;
     }
 
+    public void setUserSession(String userSession) {
+        this.userSession = userSession;
+    }
+
     public String getUserPass() {
         return userPass;
     }
@@ -87,9 +90,35 @@ public class AddUserInformation {
         this.userPass = userPass;
     }
 
-    public void setUserSession(String userSession) {
-        this.userSession = userSession;
+    public String getUserEmail() {
+        return userEmail;
     }
 
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
+    public String getUserDepartment() {
+        return userDepartment;
+    }
+
+    public void setUserDepartment(String userDepartment) {
+        this.userDepartment = userDepartment;
+    }
+
+    public String getUserUniqueId() {
+        return userUniqueId;
+    }
+
+    public void setUserUniqueId(String userUniqueId) {
+        this.userUniqueId = userUniqueId;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 }

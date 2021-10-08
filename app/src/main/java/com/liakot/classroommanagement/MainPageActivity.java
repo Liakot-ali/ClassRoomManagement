@@ -19,12 +19,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainPageActivity extends Fragment {
 
+    Button wajedBuildingButton, academicBuilding1, academicBuilding2, academicBuilding3, academicBuilding4;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.activity_main_page, container, false);
-
-        Button wajedBuildingButton, academicBuilding1, academicBuilding2, academicBuilding3, academicBuilding4;
 
         wajedBuildingButton = view.findViewById(R.id.wajedBuildingButton);
         academicBuilding1 = view.findViewById(R.id.academicBuilding1);
@@ -35,7 +34,6 @@ public class MainPageActivity extends Fragment {
         wajedBuildingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getActivity(), WajedBuilding.class);
                 startActivity(intent);
             }
@@ -71,23 +69,5 @@ public class MainPageActivity extends Fragment {
 
         return view;
     }
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main_page);
-//        Toolbar toolbar = findViewById(R.id.toolbarDemo);
-//        setSupportActionBar(toolbar);
-//
-//        getSupportActionBar().setTitle(null);
-//        InitializeAll();
-//    }
-
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu,menu);
-//        return true;
-//    }
-
 
 }

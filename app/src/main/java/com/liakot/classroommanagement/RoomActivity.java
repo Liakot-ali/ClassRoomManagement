@@ -8,45 +8,129 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class RoomActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    TextView toolbarTextView;
     ListView roomListView;
 
-    String[] roomNo;
-    String[] startTime;
-    String[] endTime;
-    String[] enrol;
+    String floorRefSt, toolbarText;
+    FirebaseDatabase database;
+    FirebaseAuth mAuth;
+    ArrayList<RoomActivityClass> arrayList;
+    BaseAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
 
-        //------receive the data from parent activity----------
-        Intent intent = getIntent();
-        roomNo = intent.getStringArrayExtra("room no");
-        startTime = intent.getStringArrayExtra("start time");
-        endTime = intent.getStringArrayExtra("end time");
-        enrol = intent.getStringArrayExtra("enroll or booked");
-
         InitializeAll();
+
+        assert floorRefSt != null;
+        final DatabaseReference floorRef = FirebaseDatabase.getInstance().getReferenceFromUrl(floorRefSt);
+
+        floorRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snapshot1 : snapshot.getChildren())
+                {
+                    RoomActivityClass newRoom = snapshot1.getValue(RoomActivityClass.class);
+                    arrayList.add(newRoom);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Adapter();
+        roomListView.setAdapter(adapter);
+
+        //-------For each item-------------
+        roomListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String roomStatus = arrayList.get(position).getRoomStatus();
+                String roomRef = floorRefSt + "/RoomNo:" + arrayList.get(position).getRooNo();      //-------For every room reference----
+                                                                                                   //-----AllBuildings/Building/floor/RoomNo:
+                if(roomStatus.equals("Empty"))
+                {
+                    Intent intent = new Intent(RoomActivity.this, BookedUserInformation.class);
+                    intent.putExtra("RoomRef", roomRef);
+                    intent.putExtra("RoomNo", arrayList.get(position).getRooNo());
+                    startActivity(intent);
+                }
+                else{
+                    DatabaseReference room = FirebaseDatabase.getInstance().getReferenceFromUrl(roomRef);
+                    room.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String roomNo, className, courseCode, teacherName, departmentName, level, semester, crUniqueId, startTime, endTime;
+                            RoomActivityClass newRoom = snapshot.getValue(RoomActivityClass.class);
+                            assert newRoom != null;
+                            roomNo = newRoom.getRooNo();
+                            className = newRoom.getClassName();
+                            courseCode = newRoom.getCourseName();
+                            teacherName = newRoom.getTeacherName();
+                            departmentName = newRoom.getDepartmentName();
+                            level = newRoom.getLevel();
+                            semester = newRoom.getSemester();
+                            crUniqueId = newRoom.getCrUniqueId();
+                            startTime = newRoom.getStartTime();
+                            endTime = newRoom.getEndTime();
+
+                            Intent intent = new Intent(RoomActivity.this, Booked_Information.class);
+                            intent.putExtra("RoomNo", roomNo);
+                            intent.putExtra("CourseName", className);
+                            intent.putExtra("CourseCode", courseCode);
+                            intent.putExtra("TeacherName", teacherName);
+                            intent.putExtra("DepartmentName", departmentName);
+                            intent.putExtra("Level",level);
+                            intent.putExtra("Semester", semester);
+                            intent.putExtra("CrUniqueId", crUniqueId);
+                            intent.putExtra("StartTime", startTime);
+                            intent.putExtra("EndTime", endTime);
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
     }
 
     private void InitializeAll() {
-        roomListView = findViewById(R.id.roomListView);
-        MyAdapter adapter = new MyAdapter(this, roomNo, startTime, endTime, enrol);
-        roomListView.setAdapter(adapter);
 
         //------------Toolbar Back Button----------
         toolbar = findViewById(R.id.toolbarDemo);
@@ -54,69 +138,80 @@ public class RoomActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        arrayList = new ArrayList<>();
+
+        toolbarTextView = findViewById(R.id.toolbarTextView);
+        roomListView = findViewById(R.id.roomListView);
+
+        //------receive the data from parent activity----------
+        floorRefSt = getIntent().getStringExtra("FloorRef");
+        toolbarText = getIntent().getStringExtra("ToolbarText");
+
+        toolbarTextView.setText(toolbarText);
     }
 
-
-    //------------------Create Custom Adapter----------
-    class MyAdapter extends ArrayAdapter<String> {
-        Context context;
-        String[] room;
-        String[] startTime;
-        String[] endTime;
-        String[] enroll;
-
-        MyAdapter(Context context1, String[] room, String[] startTime, String[] endTime, String[] enroll) {
-            super(context1, R.layout.activity_view, R.id.roomNoTextView, room);
-            this.context = context1;
-            this.room = room;
-            this.startTime = startTime;
-            this.endTime = endTime;
-            this.enroll = enroll;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-            LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            assert layoutInflater != null;
-            @SuppressLint("ViewHolder") View roomView = layoutInflater.inflate(R.layout.activity_view, parent, false);
-
-            TextView roomNoText = roomView.findViewById(R.id.roomNoTextView);
-            TextView startTimeText = roomView.findViewById(R.id.startTimeTextView);
-            TextView endTimeText = roomView.findViewById(R.id.endTimeTextView);
-            Button enrollButton = roomView.findViewById(R.id.enrollButton);
-
-
-            roomNoText.setText(roomNo[position]);
-            startTimeText.setText("Start : "+startTime[position]);
-            endTimeText.setText("End : "+endTime[position]);
-            enrollButton.setText(enroll[position]);
-            if (enroll[position].equals("Booked")) {
-                enrollButton.setBackgroundResource(R.drawable.button_design_red);
-                startTimeText.setText("Start : 00:00");
-                endTimeText.setText("End : 00:00");
-
-                enrollButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(RoomActivity.this, Booked_Information.class);
-                        startActivity(intent);
-                    }
-                });
-            } else {
-                enrollButton.setBackgroundResource(R.drawable.button_design1);
-                enrollButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(RoomActivity.this, BookedUserInformation.class);
-                        startActivity(intent);
-                    }
-                });
+    //------------Adapter all work----------
+    public void Adapter()
+    {
+        adapter = new BaseAdapter() {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            @Override
+            public int getCount() {
+                return arrayList.size();
             }
-            return roomView;
-        }
+
+            @Override
+            public Object getItem(int position) {
+                return arrayList.get(position);
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
+
+            @SuppressLint("InflateParams")
+            @Override
+            public View getView(int position, View view, ViewGroup viewGroup) {
+                if (view == null)
+                {
+                    view = inflater.inflate(R.layout.activity_view, null);
+                }
+
+                TextView startTime, endTime, roomNo;
+                Button statusBtn;
+                startTime = view.findViewById(R.id.startTimeTextView);
+                endTime = view.findViewById(R.id.endTimeTextView);
+                roomNo = view.findViewById(R.id.roomNoTextView);
+                statusBtn = view.findViewById(R.id.enrollButton);
+
+                String startTimeSt, endTimeSt, roomNoSt, statusSt;
+                startTimeSt = arrayList.get(position).getStartTime();
+                endTimeSt = arrayList.get(position).getEndTime();
+                roomNoSt = arrayList.get(position).getRooNo();
+                statusSt = arrayList.get(position).getRoomStatus();
+
+                if(statusSt.equals("Empty"))
+                {
+                    statusBtn.setBackgroundResource(R.drawable.button_design1);
+                    statusBtn.setText("Empty");
+                    startTime.setText("Start : 00:00");
+                    endTime.setText("End : 00:00");
+                }
+                else{
+                    statusBtn.setBackgroundResource(R.drawable.button_design_red);
+                    statusBtn.setText("Booked");
+                    startTime.setText("Start : " + startTimeSt);
+                    endTime.setText("End : " + endTimeSt);
+                }
+                roomNo.setText("Room No: " + roomNoSt);
+
+                return view;
+            }
+        };
     }
 
     //---------------------For Toolbar Back Button------------------

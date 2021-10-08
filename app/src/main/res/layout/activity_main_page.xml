@@ -305,10 +305,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:textColor="@color/buttonTextColor"
-                                android:textSize="@dimen/button_text"
                                 android:text="@string/academicBuilding4"
-                                />
+                                android:textColor="@color/buttonTextColor"
+                                android:textSize="@dimen/button_text" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -316,13 +315,14 @@
                             android:layout_height="match_parent"
                             android:gravity="center|bottom"
                             android:orientation="vertical">
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
                                 android:layout_marginBottom="10sp"
-                                android:textColor="#090909"
-                                android:text="(Under Construction)"/>
+                                android:gravity="center"
+                                android:text="(Under Construction)"
+                                android:textColor="#090909" />
                         </LinearLayout>
 
 

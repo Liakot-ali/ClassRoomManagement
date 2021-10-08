@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,36 +30,39 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    String userEmail, userPass, userName;
-    DatabaseReference databaseReference;
+
+    String userEmail, userName, profilePicture;
+    FirebaseDatabase database;
+    FirebaseAuth mAuth;
+
     TextView userNameTextView, userEmailTextView;
+    Button updateProfileButton;
+    ImageView userProfilePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_side);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("User Profile");
-
         //-----------for hide the app name from toolbar-----------------
         toolbar = findViewById(R.id.toolbarDemo);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
+
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        String userUniqueId = mAuth.getUid();
+        assert userUniqueId != null;
+        DatabaseReference profileRef = database.getReference("Student").child("User").child(userUniqueId).child("Profile");
 
         //-------------for menu Button in toolbar--------------
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        userEmail = getIntent().getStringExtra("Email");
-        userPass = getIntent().getStringExtra("Password");
-        userName = getIntent().getStringExtra("Name");
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainPageActivity()).commit();
@@ -68,32 +72,33 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
         //-----------Access update profile Button from header layout-----------
         View header = navigationView.getHeaderView(0);
 
-        Button updateProfileButton;
 
-        ImageView userProfilePicture;
 
         updateProfileButton = header.findViewById(R.id.updateProfileButton);
         userProfilePicture = header.findViewById(R.id.userProfilePicture);
         userNameTextView = header.findViewById(R.id.userNameTextView);
         userEmailTextView = header.findViewById(R.id.userEmailTextView);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        profileRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String userId = userEmail.substring(0, userEmail.indexOf("@")) + userPass;
 
-                AddUserProfile userProfile;
-                userProfile = snapshot.child(userId).getValue(AddUserProfile.class);
+                AddUserInformation profile = snapshot.getValue(AddUserInformation.class);
 
-                assert userProfile != null;
-                userName = userProfile.getUserName();
-                userEmail = userProfile.getUserEmail();
+                assert profile != null;
+                userName = profile.getUserName();
+                userEmail = profile.getUserEmail();
+                profilePicture = profile.getProfilePicture();
 
                 userEmailTextView.setText(userEmail);
                 userNameTextView.setText(userName);
+                if(!profilePicture.isEmpty())
+                {
+                    //TODO
+                    Toast.makeText(getApplicationContext(), "Profile picture found",Toast.LENGTH_SHORT).show();
+                }
 
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -105,8 +110,6 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivitySide.this, UpdateProfile.class);
-                intent.putExtra("Email", userEmail);
-                intent.putExtra("Password", userPass);
 
                 startActivity(intent);
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -138,10 +141,7 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
         switch (item.getItemId()) {
             case R.id.nav_profile:
                 UserProfileFragment userProfileFragment = new UserProfileFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("Email", userEmail);
-                bundle.putString("Password", userPass);
-                userProfileFragment.setArguments(bundle);
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         userProfileFragment).commit();
                 toolbarTextView.setText("User Profile");
@@ -178,11 +178,12 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
                 break;
 
             case R.id.sign_out:
-                finish();
+                mAuth.signOut();
                 Intent intent1 = new Intent(MenuActivitySide.this, MainActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent1);
+                finish();
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(GravityCompat.START);
                 }

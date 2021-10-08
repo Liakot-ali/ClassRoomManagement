@@ -168,6 +168,7 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
                 userSemester = updateSemesterSpinner.getSelectedItem().toString();
 
                 final DatabaseReference departmentRef = databaseReference.child(userDepartment);
+                final String userUniqueId = mAuth.getUid();
 
                 StorageReference sRef = storageReference.child(userStudentID + "." + getFileExtension(targetUri));
                 progressBar.setVisibility(View.VISIBLE);
@@ -178,7 +179,7 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 progressBar.setVisibility(View.GONE);
 
-                                AddUserInformation userInformation = new AddUserInformation(userName, userEmail, userPhoneNumber, userStudentID, userLevel, userSemester, userSession, userNewPass);
+                                AddUserInformation userInformation = new AddUserInformation(userName, userEmail, userPhoneNumber, userStudentID, userDepartment, userLevel, userSemester, userSession, userNewPass, "", userUniqueId);
                                 departmentRef.child(userStudentID).setValue(userInformation);
                                 departmentRef.child(userStudentID).child("userProfilePicture").setValue(taskSnapshot.getStorage().getDownloadUrl().toString());
 

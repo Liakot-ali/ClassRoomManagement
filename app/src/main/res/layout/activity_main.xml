@@ -72,6 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Enter Your Email"
+                        android:textColor="@color/normalTextColor"
                         android:textSize="@dimen/normal_text" />
 
                     <EditText
@@ -88,6 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20sp"
                         android:text="Enter Your Password"
+                        android:textColor="@color/normalTextColor"
                         android:textSize="@dimen/normal_text" />
 
                     <EditText
@@ -96,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:hint="password"
-                        android:inputType="numberPassword" />
+                        android:inputType="textPassword" />
                 </LinearLayout>
 
 
