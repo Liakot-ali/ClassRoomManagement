@@ -61,7 +61,6 @@ public class Booked_Information extends AppCompatActivity {
                 crStudentId = crInformation.getUserSID();
                 crProfilePicture = crInformation.getProfilePicture();
                 crSession = crInformation.getUserSession();
-
             }
 
             @Override

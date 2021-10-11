@@ -135,23 +135,66 @@
                     android:layout_marginBottom="10sp"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/bookingStartTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="time"
-                        android:hint="Start Time"/>
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/bookingEndTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/normal_text"
+                            android:gravity="center"
+                            android:textColor="@color/normalTextColor"
+                            android:text="Start Time" />
+
+                        <TextView
+                            android:id="@+id/bookingStartTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/layPad"
+                            android:textSize="@dimen/normal_text"
+                            android:background="@android:drawable/dialog_holo_light_frame"
+                            android:textColor="@color/buttonBackgroundColor"
+                            android:text="12:00 am"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="time"
-                        android:hint="End Time"/>
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView28"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textSize="@dimen/normal_text"
+                            android:textColor="@color/normalTextColor"
+                            android:text="End Time" />
+
+                        <TextView
+                            android:id="@+id/bookingEndTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/layPad"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textSize="@dimen/normal_text"
+                            android:background="@android:drawable/dialog_holo_light_frame"
+                            android:textColor="@color/buttonBackgroundColor"
+                            android:text="12:00 am" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
@@ -165,11 +208,6 @@
             android:layout_marginBottom="10sp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
 
             <Button
                 android:id="@+id/enrollButton"

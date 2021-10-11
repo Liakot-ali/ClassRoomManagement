@@ -38,11 +38,14 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
     TextView userNameTextView, userEmailTextView;
     Button updateProfileButton;
     ImageView userProfilePicture;
+    TextView toolbarTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_side);
+
+        toolbarTextView = findViewById(R.id.toolbarMainTextView);
 
         //-----------for hide the app name from toolbar-----------------
         toolbar = findViewById(R.id.toolbarDemo);
@@ -117,6 +120,20 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
                 }
             }
         });
+
+        userProfilePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserProfileFragment userProfileFragment = new UserProfileFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        userProfileFragment).commit();
+                toolbarTextView.setText("User Profile");
+                navigationView.setCheckedItem(R.id.nav_profile);
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+            }
+        });
     }
 
     @Override
@@ -136,8 +153,7 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        TextView toolbarTextView;
-        toolbarTextView = findViewById(R.id.toolbarMainTextView);
+
         switch (item.getItemId()) {
             case R.id.nav_profile:
                 UserProfileFragment userProfileFragment = new UserProfileFragment();

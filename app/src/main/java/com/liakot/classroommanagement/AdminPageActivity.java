@@ -42,7 +42,7 @@ public class AdminPageActivity extends AppCompatActivity {
                 {
                     String roomNo = String.valueOf(i);
 
-                    RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "", "");
+                    RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "", "", "", "");
                     floor0Ref.child("RoomNo:" + roomNo).setValue(newRoom);
                 }
                 Toast.makeText(getApplicationContext(), "Floor0 Value Added",Toast.LENGTH_SHORT).show();
@@ -52,11 +52,11 @@ public class AdminPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                for (int i=201; i<=250; i++)
+                for (int i = 201; i <= 250; i++)
                 {
                     String roomNo = String.valueOf(i);
 
-                    RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "", "");
+                    RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "","", "", "", "");
                     floor1Ref.child("RoomNo:" + roomNo).setValue(newRoom);
                 }
                 Toast.makeText(getApplicationContext(), "Floor1 Value Added",Toast.LENGTH_SHORT).show();
@@ -70,7 +70,7 @@ public class AdminPageActivity extends AppCompatActivity {
                 {
                     String roomNo = String.valueOf(i);
 
-                    RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "", "");
+                    RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "", "","", "");
                     floor2Ref.child("RoomNo:" + roomNo).setValue(newRoom);
                 }
                 Toast.makeText(getApplicationContext(), "Floor2 Value Added",Toast.LENGTH_SHORT).show();
@@ -85,7 +85,7 @@ public class AdminPageActivity extends AppCompatActivity {
                 {
                     String roomNo = String.valueOf(i);
 
-                    RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "", "");
+                    RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "","", "", "");
                     floor3Ref.child("RoomNo:" + roomNo).setValue(newRoom);
                 }
                 Toast.makeText(getApplicationContext(), "Floor3 Value Added",Toast.LENGTH_SHORT).show();
@@ -99,7 +99,7 @@ public class AdminPageActivity extends AppCompatActivity {
                 {
                     String roomNo = String.valueOf(i);
 
-                    RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "", "");
+                    RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "","", "", "");
                     floor4Ref.child("RoomNo:" + roomNo).setValue(newRoom);
                 }
                 Toast.makeText(getApplicationContext(), "Floor4 Value Added",Toast.LENGTH_SHORT).show();
