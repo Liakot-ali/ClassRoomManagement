@@ -72,15 +72,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="20sp"
+                android:padding="@dimen/layPad"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
-                    android:layout_marginBottom="15sp"
                     android:orientation="vertical">
 
                     <TextView
@@ -146,8 +143,8 @@
                         android:id="@+id/registerUserStudentId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15sp"
                         android:ems="10"
+                        android:layout_marginBottom="@dimen/layPad"
                         android:hint="Student ID"
                         android:inputType="number" />
                 </LinearLayout>
@@ -156,9 +153,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
-                    android:layout_marginBottom="15sp"
+                    android:layout_marginBottom="@dimen/layPad"
                     android:orientation="horizontal">
 
                     <TextView
@@ -185,9 +180,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
-                    android:layout_marginBottom="15sp"
+                    android:layout_marginBottom="@dimen/layPad"
                     android:orientation="horizontal">
 
                     <TextView
@@ -224,8 +217,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
+
                     android:layout_marginBottom="15sp"
                     android:orientation="horizontal">
 
@@ -250,8 +242,6 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
                     android:text="Create a Password"
                     android:textColor="@color/normalTextColor"
                     android:textSize="@dimen/normal_text" />
@@ -260,18 +250,23 @@
                     android:id="@+id/registerUserPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
                     android:ems="10"
                     android:hint="Password"
                     android:inputType="textPassword" />
 
 
+                <CheckBox
+                    android:id="@+id/registerRememberMe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/small_text"
+                    android:textColor="@color/buttonBackgroundColor"
+                    android:layout_marginBottom="@dimen/textPad"
+                    android:text="Remember Me" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
                     android:orientation="horizontal">
 
                     <Button

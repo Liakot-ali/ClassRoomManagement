@@ -12,6 +12,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -52,12 +53,13 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
     ImageView userProfileImage;
     Uri targetUri;
     ProgressBar progressBar;
+    CheckBox notVisible;
 
     FirebaseDatabase database;
     FirebaseStorage storage;
     FirebaseAuth mAuth;
 
-    String userName, userEmail, userPhoneNumber, userStudentID, userSession, userDepartment, userLevel, userSemester, userPassword, userPictureSt, userId;
+    String userName, userEmail, userPhoneNumber, userStudentID, userSession, userDepartment, userLevel, userSemester, userPassword, userPictureSt, userId, visibility;
 
     ArrayAdapter<CharSequence> departmentAdapter, levelAdapter, semesterAdapter;
 
@@ -108,13 +110,13 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
                         userStudentID = userProfile.getUserSID();
                         userPassword = userProfile.getUserPass();
                         userId = userProfile.getUserUniqueId();
+                        visibility = String.valueOf(notVisible.isChecked());
                         //TODO
                         userPictureSt = userProfile.getProfilePicture();
 
                         userDepartment = updateDepartmentSpinner.getSelectedItem().toString();
                         userLevel = updateLevelSpinner.getSelectedItem().toString();
                         userSemester = updateSemesterSpinner.getSelectedItem().toString();
-
 
                         AddUserInformation user = new AddUserInformation(userName, userEmail, userPhoneNumber, userStudentID, userDepartment, userLevel, userSemester, userSession, userPassword, userPictureSt, userUniqueId);
                         profileRef.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -181,6 +183,7 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
         addAnImageButton = findViewById(R.id.addAnImageButton);
         userProfileImage = findViewById(R.id.userProfilePicture);
 
+        notVisible = findViewById(R.id.updateCheckBox);
 
 
         addAnImageButton.setOnClickListener(new View.OnClickListener() {

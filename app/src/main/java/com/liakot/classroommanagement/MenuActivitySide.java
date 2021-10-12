@@ -1,5 +1,8 @@
 package com.liakot.classroommanagement;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -194,15 +197,35 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
                 break;
 
             case R.id.sign_out:
-                mAuth.signOut();
-                Intent intent1 = new Intent(MenuActivitySide.this, MainActivity.class);
-                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent1);
-                finish();
-                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                }
+                //TODO
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setTitle("Are you sure?");
+                dialog.setMessage("Do you want to log out?");
+                dialog.setIcon(R.drawable.ic_log_out);
+
+                dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            drawerLayout.closeDrawer(GravityCompat.START);
+                        }
+                    }
+                });
+                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mAuth.signOut();
+                        Intent intent1 = new Intent(MenuActivitySide.this, MainActivity.class);
+                        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent1);
+                        finish();
+                        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            drawerLayout.closeDrawer(GravityCompat.START);
+                        }
+                    }
+                });
+                dialog.show();
                 break;
             case R.id.emergency_contact:
                 Intent intent4 = new Intent(MenuActivitySide.this, EmergencyContact.class);

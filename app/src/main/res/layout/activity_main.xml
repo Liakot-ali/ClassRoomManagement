@@ -75,32 +75,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/layPad"
                 android:gravity="top"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/layPad">
 
                 <TextView
                     android:id="@+id/textView22"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/headline_text"
                     android:padding="@dimen/textPad"
+                    android:text="Log In your account"
                     android:textColor="@color/buttonBackgroundColor"
-                    android:text="Log In your account" />
+                    android:textSize="@dimen/headline_text" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-               android:padding="@dimen/layPad"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/layPad">
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Your Email"
                     android:padding="@dimen/textPad"
+                    android:text="Enter Your Email"
                     android:textColor="@color/normalTextColor"
                     android:textSize="@dimen/normal_text" />
 
@@ -117,8 +117,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25sp"
-                    android:text="Enter Your Password"
                     android:padding="@dimen/textPad"
+                    android:text="Enter Your Password"
                     android:textColor="@color/normalTextColor"
                     android:textSize="@dimen/normal_text" />
 
@@ -129,6 +129,21 @@
                     android:ems="10"
                     android:hint="password"
                     android:inputType="textPassword" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/layPad"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/logInRememberMe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/small_text"
+                    android:textColor="@color/buttonBackgroundColor"
+                    android:text="Remember Me" />
             </LinearLayout>
 
 

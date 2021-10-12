@@ -79,8 +79,7 @@
                         android:layout_height="100sp"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_user_profile"
-                         />
+                        android:src="@drawable/ic_user_profile" />
 
                     <Button
                         android:id="@+id/addAnImageButton"
@@ -93,6 +92,20 @@
                         android:text="@string/addAnImageButton"
                         android:textColor="@color/buttonTextColor"
                         android:textSize="@dimen/button_text" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/updateCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/small_text"
+                        android:textColor="@color/buttonBackgroundColor"
+                        android:text="Make not visible to others" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -240,7 +253,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15sp"
+                    android:layout_marginBottom="@dimen/layPad"
                     android:orientation="horizontal">
 
                     <TextView
@@ -272,8 +285,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="@string/updateButton"
                         android:background="@drawable/button_design"
+                        android:text="@string/updateButton"
                         android:textColor="@color/buttonTextColor"
                         android:textSize="@dimen/button_text" />
 

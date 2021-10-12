@@ -2,11 +2,13 @@ package com.liakot.classroommanagement;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     Button loginUserLoginButton;
     EditText logInUserEmail, logInUserPassword;
     ProgressBar progressBar;
+    CheckBox rememberMe;
 
     FirebaseAuth mAuth;
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.loginProgressbar);
         logInUserEmail = findViewById(R.id.logInUserEmail);
         logInUserPassword = findViewById(R.id.logInUserPassword);
+        rememberMe = findViewById(R.id.logInRememberMe);
 
         loginUserRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,9 +107,14 @@ public class MainActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(userEmail, userPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
+                    if(rememberMe.isChecked())
+                    {
+                        //TODO
+                        Toast.makeText(MainActivity.this, "Checked", Toast.LENGTH_SHORT).show();
+//                        SharedPreferences preferences = new SharedPreferences.Editor();
+                    }
                     Toast.makeText(getApplicationContext(), "Log In Successful", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(MainActivity.this, MenuActivitySide.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     Spinner departmentSpinner, levelSpinner, semesterSpinner;
     TextView registerUserName, registerUserEmail, registerUserStudentId, registerUserSession, registerUserPassword, registerUserPhoneNumber;
     ProgressBar progressBar;
+    CheckBox rememberMe;
 
     FirebaseDatabase database;
     FirebaseAuth mAuth;
@@ -86,6 +88,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         departmentSpinner = findViewById(R.id.registerDepartmentSpinner);
         levelSpinner = findViewById(R.id.registerLevelSpinner);
         semesterSpinner = findViewById(R.id.registerSemesterSpinner);
+
+        registerUserName = findViewById(R.id.registerRememberMe);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -222,6 +226,11 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                                                 progressBar.setVisibility(View.GONE);
                                                 if (task.isSuccessful())
                                                 {
+                                                    if (rememberMe.isChecked())
+                                                    {
+                                                        //TODO
+                                                        Toast.makeText(RegisterActivity.this, "Checkbox Checked", Toast.LENGTH_SHORT).show();
+                                                    }
                                                     Toast.makeText(getApplicationContext(), "Register is Successful", Toast.LENGTH_LONG).show();
                                                     Intent intent = new Intent(RegisterActivity.this, MenuActivitySide.class);
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
