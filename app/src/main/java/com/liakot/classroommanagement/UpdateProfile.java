@@ -1,11 +1,13 @@
 package com.liakot.classroommanagement;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -93,6 +95,10 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
                     @Override
                     public void onClick(View v) {
 
+                        //-----------------To Hide the keyboard--------
+                        InputMethodManager methodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        methodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
                         userName = updateUserName.getText().toString();
                         userEmail = updateUserEmail.getText().toString();
                         userPhoneNumber = updateUserPhoneNumber.getText().toString();
@@ -107,7 +113,6 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
                         userDepartment = updateDepartmentSpinner.getSelectedItem().toString();
                         userLevel = updateLevelSpinner.getSelectedItem().toString();
                         userSemester = updateSemesterSpinner.getSelectedItem().toString();
-
 
 
                         AddUserInformation user = new AddUserInformation(userName, userEmail, userPhoneNumber, userStudentID, userDepartment, userLevel, userSemester, userSession, userPassword, userPictureSt, userUniqueId);

@@ -1,9 +1,11 @@
 package com.liakot.classroommanagement;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -60,6 +62,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         resisterUserRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager methodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                methodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 UserRegister();
             }
         });

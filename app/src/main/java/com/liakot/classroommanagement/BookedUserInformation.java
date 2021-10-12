@@ -1,12 +1,14 @@
 package com.liakot.classroommanagement;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -53,6 +55,11 @@ public class BookedUserInformation extends AppCompatActivity {
         enrollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //-----------------To Hide the keyboard--------
+                InputMethodManager methodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                methodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
 
                 DatabaseReference roomRef = database.getReferenceFromUrl(roomRefSt);
                 String courseName, courseCode, teacherName, startTime, endTime, roomStatus;

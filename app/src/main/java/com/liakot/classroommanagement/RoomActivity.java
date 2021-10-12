@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +31,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RoomActivity extends AppCompatActivity {
 
@@ -41,6 +46,7 @@ public class RoomActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ArrayList<RoomActivityClass> arrayList;
     BaseAdapter adapter;
+    DatabaseReference floorRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +56,7 @@ public class RoomActivity extends AppCompatActivity {
         InitializeAll();
 
         assert floorRefSt != null;
-        final DatabaseReference floorRef = FirebaseDatabase.getInstance().getReferenceFromUrl(floorRefSt);
+        floorRef = FirebaseDatabase.getInstance().getReferenceFromUrl(floorRefSt);
 
         floorRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -196,22 +202,93 @@ public class RoomActivity extends AppCompatActivity {
 
                 if(statusSt.equals("Empty"))
                 {
+//                    long currentTime = System.currentTimeMillis();
+//                    long startHour, startMinute, startTimeInMills;
+//
+//                    String[] time1 = startTimeSt.split(":");
+//                    startHour = Long.parseLong(time1[0]);
+//                    String[] t1 = time1[1].split(" ");
+//                    startMinute = Long.parseLong(t1[0]);
+//                    if(t1[1].equals("pm"))
+//                    {
+//                        startHour += 12;
+//                    }
+//                    startTimeInMills = (startHour * 60 + startMinute) * 60000;
+
                     statusBtn.setBackgroundResource(R.drawable.button_design1);
                     statusBtn.setText("Empty");
                     startTime.setText("Start : 00:00");
                     endTime.setText("End : 00:00");
                 }
-                else{
-                    statusBtn.setBackgroundResource(R.drawable.button_design_red);
-                    statusBtn.setText("Booked");
-                    startTime.setText("Start : " + startTimeSt);
-                    endTime.setText("End : " + endTimeSt);
+                else{           //--------If status if 'booked'---------
+                    Date date = new Date();
+                    SimpleDateFormat format = new SimpleDateFormat("hh:mm a");
+
+                    String presentTime = format.format(date);
+
+                    long currentTime = TimeInMills(presentTime);
+                    long endTimeInMillis = TimeInMills(endTimeSt);
+
+                    Log.e("Time", "getView: Current time" + currentTime);
+                    Log.e("Time", "getView: End time" + endTimeInMillis);
+
+                    if(endTimeInMillis>=currentTime)
+                    {
+                        statusBtn.setBackgroundResource(R.drawable.button_design_red);
+                        statusBtn.setText("Booked");
+                        startTime.setText("Start : " + startTimeSt);
+                        endTime.setText("End : " + endTimeSt);
+                    }
+                    else{
+                        statusBtn.setBackgroundResource(R.drawable.button_design1);
+                        statusBtn.setText("Empty");
+                        startTime.setText("Start : 00:00");
+                        endTime.setText("End : 00:00");
+
+                        MakeEmpty(arrayList.get(position).getRooNo(), arrayList.get(position).getCrUniqueId());
+                    }
+
                 }
                 roomNo.setText("Room No: " + roomNoSt);
 
                 return view;
             }
         };
+    }
+
+    //---------Make the room empty and remove form Cr MyRoom --------------
+    private void MakeEmpty(String roomNo, String crUniqueId) {
+
+        final DatabaseReference crRef = database.getReference("Student").child("User").child(crUniqueId).child("MyRoom");
+        RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "", "", "", "");
+        floorRef.child("RoomNo:" + roomNo).setValue(newRoom).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()) {
+                    crRef.removeValue();
+                }
+                else{
+                    Toast.makeText(RoomActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    public long TimeInMills(String time)
+    {
+        long endHour, endMinute;
+
+        String[] time1 = time.split(":");
+        endHour = Long.parseLong(time1[0]);
+        String[] t1 = time1[1].split(" ");
+        endMinute = Long.parseLong(t1[0]);
+
+        if(t1[1].equals("pm"))
+        {
+            endHour += 12;
+        }
+        return (endHour * 60 + endMinute) * 60000;
     }
 
     //---------------------For Toolbar Back Button------------------
