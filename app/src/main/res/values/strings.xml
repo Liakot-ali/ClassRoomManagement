@@ -44,6 +44,8 @@
     <dimen name="textPad">5sp</dimen>
     <dimen name="layPad">15sp</dimen>
     <dimen name="progressBarSize">80sp</dimen>
+    <dimen name="buildingBtnWidth">150sp</dimen>
+    <dimen name="buildingBtnHeight">120sp</dimen>
 
 
     <string-array name="departmentSpinner2">

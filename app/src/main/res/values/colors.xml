@@ -9,6 +9,7 @@
     <color name="green">#F219811E</color>
     <color name="red">#F19A0303</color>
 
+    <color name="buildingBtnBackground">#3DDC84</color>
     <color name="normalTextColor">#E6000000</color>
     <color name="toolbarTextColor">#FFFFFF</color>
     <color name="toolbarBackgroundColor">#009688</color>

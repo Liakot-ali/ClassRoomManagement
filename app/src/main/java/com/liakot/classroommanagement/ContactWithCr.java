@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +15,8 @@ import org.w3c.dom.Text;
 public class ContactWithCr extends AppCompatActivity {
 
     Toolbar toolbar;
-    String name, phone, studentId, email, session, picture;
-    TextView crName, crPhone, crStudentId, crSession, crEmail;
+    String name, phone, studentId, email, session, picture, department, level, semester;
+    TextView crName, crPhone, crStudentId, crSession, crEmail, crDepartment, crLevel, crSemester;
     ImageView crPicture;
 
     @Override
@@ -43,6 +44,9 @@ public class ContactWithCr extends AppCompatActivity {
         crStudentId = findViewById(R.id.crContactStudentId);
         crPicture = findViewById(R.id.crContactPicture);
         crSession = findViewById(R.id.crContactSession);
+        crDepartment = findViewById(R.id.crContactDepartment);
+        crLevel = findViewById(R.id.crContactLevel);
+        crSemester = findViewById(R.id.crContactSemester);
 
         //--------get the value from previous activity--------------
         name = getIntent().getStringExtra("CrName");
@@ -51,13 +55,24 @@ public class ContactWithCr extends AppCompatActivity {
         studentId = getIntent().getStringExtra("CrSID");
         session = getIntent().getStringExtra("CrSession");
         picture = getIntent().getStringExtra("CrPicture");
+        department = getIntent().getStringExtra("CrDepartment");
+        level = getIntent().getStringExtra("CrLevel");
+        semester = getIntent().getStringExtra("CrSemester");
 
-        crName.setText(name);
-        crEmail.setText(email);
-        crPhone.setText(phone);
-        crStudentId.setText(studentId);
-        crSession.setText("Session: " + session);
+        //TODO
 
+        if (!picture.isEmpty())
+        {
+            Toast.makeText(this, "Profile picture found", Toast.LENGTH_SHORT).show();
+        }
+        crName.setText("Name : " + name);
+        crEmail.setText("Email : " + email);
+        crDepartment.setText("Department : " + department);
+        crLevel.setText("Level : " + level);
+        crSemester.setText("Semester : " + semester);
+        crStudentId.setText("Student ID : " + studentId);
+        crPhone.setText("Phone : " + phone);
+        crSession.setText("Session : " + session);
 
     }
 

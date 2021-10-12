@@ -160,7 +160,7 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         userProfileFragment).commit();
-                toolbarTextView.setText("User Profile");
+                toolbarTextView.setText("My Profile");
 
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(GravityCompat.START);

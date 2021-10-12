@@ -81,7 +81,7 @@
                             android:id="@+id/bookedCourseName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingStart="@dimen/textPad"
+                            android:paddingLeft="@dimen/textPad"
                             android:text="OOP with JAVA"
                             android:textColor="@color/normalTextColor"
                             android:textSize="@dimen/normal_text" />
@@ -105,7 +105,7 @@
                             android:id="@+id/bookedCourseCode"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingStart="@dimen/textPad"
+                            android:paddingLeft="@dimen/textPad"
                             android:text="CSE 251"
                             android:textColor="@color/normalTextColor"
                             android:textSize="20sp" />
@@ -129,7 +129,7 @@
                             android:id="@+id/bookedCourseTeacher"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingStart="@dimen/textPad"
+                            android:paddingLeft="@dimen/textPad"
                             android:text="Md Abu Marjan"
                             android:textColor="@color/normalTextColor"
                             android:textSize="20sp" />
@@ -153,7 +153,7 @@
                             android:id="@+id/bookedDepartment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingStart="@dimen/textPad"
+                            android:paddingLeft="@dimen/textPad"
                             android:text="Computer Science And Engineering"
                             android:textColor="@color/normalTextColor"
                             android:textSize="@dimen/normal_text" />
