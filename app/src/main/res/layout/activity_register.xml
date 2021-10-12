@@ -16,8 +16,8 @@
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
-            android:layout_width="80sp"
-            android:layout_height="80sp"
+            android:layout_width="@dimen/progressBarSize"
+            android:layout_height="@dimen/progressBarSize"
             android:layout_gravity="center"
             android:visibility="gone" />
     </LinearLayout>
@@ -37,8 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10sp"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbarDemo"
@@ -59,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="User Registration"
+                    android:text="New User Registration"
                     android:textColor="@color/toolbarTextColor"
                     android:textSize="@dimen/toolbar_text" />
             </LinearLayout>
@@ -294,7 +293,7 @@
                         android:layout_weight="40"
                         android:gravity="center"
                         android:textSize="@dimen/small_text"
-                        android:textColor="@color/black"
+                        android:textColor="@color/buttonBackgroundColor"
                         android:text="Or" />
 
                     <FrameLayout

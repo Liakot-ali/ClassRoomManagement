@@ -28,15 +28,6 @@ public class Booked_Information extends AppCompatActivity {
 
     String roomNo, courseName, courseCode, teacherName, department, level, semester, startTime, endTime, crUniqueId;
     String crName, crPhone, crEmail, crStudentId, crSession, crProfilePicture;
-
-//    String department = "Computer Science & Engineering";
-//    String level = "2";
-//    String semester = "II";
-//    String courseName = "OOP with Java";
-//    String courseCode = "CSE 251";
-//    String courseTeacher = "Md Abu Marjan";
-//    String startTime = "10:00";
-//    String endTime = "12:50";
     FirebaseDatabase database;
 
 
@@ -69,14 +60,14 @@ public class Booked_Information extends AppCompatActivity {
             }
         });
 
-        bookedDepartment.setText("Department : " + department);
+        bookedDepartment.setText(department);
         bookedLevel.setText("Level : " + level);
         bookedSemester.setText("Semester : " + semester);
         bookedStartTime.setText("Start : " + startTime);
         bookedEndTime.setText("End : " + endTime);
-        bookedCourseName.setText("Course Name : " + courseName);
-        bookedCourseCode.setText("Course Code : " + courseCode);
-        bookedCourseTeacher.setText("Teacher : " + teacherName);
+        bookedCourseName.setText(courseName);
+        bookedCourseCode.setText(courseCode);
+        bookedCourseTeacher.setText(teacherName);
 
         contactWithCrButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,8 +15,8 @@
         <ProgressBar
             android:id="@+id/loginProgressbar"
             style="?attr/progressBarStyle"
-            android:layout_width="80sp"
-            android:layout_height="80sp"
+            android:layout_width="@dimen/progressBarSize"
+            android:layout_height="@dimen/progressBarSize"
             android:layout_gravity="center"
             android:textColor="@color/toolbarBackgroundColor"
             android:visibility="gone"
@@ -69,16 +69,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_marginTop="-100sp"
+            android:gravity="start"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
-                android:layout_marginTop="20sp"
-                android:layout_marginRight="10sp"
+                android:padding="@dimen/layPad"
+                android:gravity="top"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/headline_text"
+                    android:padding="@dimen/textPad"
+                    android:textColor="@color/buttonBackgroundColor"
+                    android:text="Log In your account" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               android:padding="@dimen/layPad"
                 android:orientation="vertical">
 
                 <TextView
@@ -122,13 +136,10 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/layPad"
-                android:paddingBottom="@dimen/layPad"
-                android:paddingEnd="@dimen/layPad"
+                android:padding="@dimen/layPad"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10sp">
+                >
 
                 <Button
                     android:id="@+id/logInUserSignInButton"

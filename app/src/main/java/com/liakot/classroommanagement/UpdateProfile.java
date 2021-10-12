@@ -95,6 +95,7 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
                     @Override
                     public void onClick(View v) {
 
+                        progressBar.setVisibility(View.VISIBLE);
                         //-----------------To Hide the keyboard--------
                         InputMethodManager methodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         methodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -121,6 +122,7 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful())
                                 {
+                                    progressBar.setVisibility(View.GONE);
                                     Toast.makeText(UpdateProfile.this, "Your Profile is update", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(UpdateProfile.this, MenuActivitySide.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -128,6 +130,10 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
                                     startActivity(intent);
                                     finish();
 
+                                }
+                                else{
+                                    progressBar.setVisibility(View.GONE);
+                                    Toast.makeText(UpdateProfile.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -137,7 +143,7 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(UpdateProfile.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
 
             }

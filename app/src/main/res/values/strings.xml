@@ -3,11 +3,11 @@
     <string name="signInButton">Sign In</string>
     <string name="registerButton">Register</string>
     <string name="updateButton">Update</string>
-    <string name="updateProfileButton">Update Profile</string>
+    <string name="updateProfileButton">Update</string>
     <string name="contactWithCrButton">Contact With CR</string>
     <string name="enrollButton">Enroll</string>
     <string name="bookedButton">Booked</string>
-    <string name="addAnImageButton">Add an Image</string>
+    <string name="addAnImageButton">Add Image</string>
 
     <string name="forget_password">Forget Password?</string>
     <string name="home_menu">Home Menu</string>
@@ -43,6 +43,7 @@
     <dimen name="buttonRadius">10sp</dimen>
     <dimen name="textPad">5sp</dimen>
     <dimen name="layPad">15sp</dimen>
+    <dimen name="progressBarSize">80sp</dimen>
 
 
     <string-array name="departmentSpinner2">

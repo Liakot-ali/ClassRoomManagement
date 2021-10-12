@@ -68,6 +68,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="example1234@email.com"
-        android:textColor="@color/smallTextColor"
+        android:textColor="@color/white"
         android:textSize="@dimen/small_text"/>
 </LinearLayout>

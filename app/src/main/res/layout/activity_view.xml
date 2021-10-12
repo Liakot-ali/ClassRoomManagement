@@ -36,7 +36,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Start Time"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/smallTextColor"
                         android:textSize="@dimen/small_text" />
 
                     <TextView
@@ -45,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="End Time"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/smallTextColor"
                         android:textSize="@dimen/small_text" />
                 </LinearLayout>
 

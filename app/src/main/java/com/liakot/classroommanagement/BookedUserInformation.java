@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -37,6 +38,8 @@ public class BookedUserInformation extends AppCompatActivity {
     Toolbar toolbar;
     Button enrollButton;
     EditText bookingCourseName, bookingCourseCode, bookingCourseTeacher;
+    ProgressBar progressBar;
+
     String roomRefSt;
     FirebaseDatabase database;
     FirebaseAuth mAuth;
@@ -55,6 +58,7 @@ public class BookedUserInformation extends AppCompatActivity {
         enrollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 //-----------------To Hide the keyboard--------
                 InputMethodManager methodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -105,7 +109,7 @@ public class BookedUserInformation extends AppCompatActivity {
                     bookingCourseTeacher.clearFocus();
                     bookingStartTime.clearFocus();
                 } else {
-
+                    progressBar.setVisibility(View.VISIBLE);
                     String userUniqueId = mAuth.getUid();
                     assert userUniqueId != null;
                     final DatabaseReference userRoomRef = database.getReference("Student").child("User").child(userUniqueId).child("MyRoom");
@@ -118,6 +122,7 @@ public class BookedUserInformation extends AppCompatActivity {
                                 userRoomRef.setValue(newRoom).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
+                                        progressBar.setVisibility(View.GONE);
                                         Toast.makeText(getApplicationContext(), "You booked this room", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(BookedUserInformation.this, MenuActivitySide.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -127,6 +132,7 @@ public class BookedUserInformation extends AppCompatActivity {
                                     }
                                 });
                             } else {
+                                progressBar.setVisibility(View.GONE);
                                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -149,6 +155,8 @@ public class BookedUserInformation extends AppCompatActivity {
         //---------initialization Section-----------
         database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
+
+        progressBar = findViewById(R.id.progressBar5);
 
         toolbarTextView = findViewById(R.id.toolbarTextView);
 

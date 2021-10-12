@@ -52,10 +52,10 @@ public class ContactWithCr extends AppCompatActivity {
         session = getIntent().getStringExtra("CrSession");
         picture = getIntent().getStringExtra("CrPicture");
 
-        crName.setText("Name: " + name);
-        crEmail.setText("Email: " + email);
-        crPhone.setText("Phone: " + phone);
-        crStudentId.setText("Student ID: " + studentId);
+        crName.setText(name);
+        crEmail.setText(email);
+        crPhone.setText(phone);
+        crStudentId.setText(studentId);
         crSession.setText("Session: " + session);
 
 

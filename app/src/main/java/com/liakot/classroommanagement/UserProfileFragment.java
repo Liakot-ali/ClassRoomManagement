@@ -102,7 +102,7 @@ public class UserProfileFragment extends Fragment {
                 userLevel.setText("Level : " + level);
                 userSemester.setText("Semester : " + semester);
                 userSID.setText("Student ID : " + sID);
-                userPhoneNumber.setText("Phone Number : " + phoneNumber);
+                userPhoneNumber.setText("Phone : " + phoneNumber);
                 userSession.setText("Session : " + session);
             }
 

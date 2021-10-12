@@ -6,11 +6,14 @@
 
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="green">#F219811E</color>
+    <color name="red">#F19A0303</color>
 
-    <color name="normalTextColor">#050505</color>
-    <color name="toolbarTextColor">#f7f7f7</color>
-    <color name="toolbarBackgroundColor">#03DAC5</color>
+    <color name="normalTextColor">#E6000000</color>
+    <color name="toolbarTextColor">#FFFFFF</color>
+    <color name="toolbarBackgroundColor">#009688</color>
     <color name="buttonTextColor">#ffffff</color>
     <color name="buttonBackgroundColor">#0777B3</color>
-    <color name="smallTextColor">#5bbfb8</color>
+    <color name="smallTextColor">#0625D6</color>
+    <color name="testColor">#009688</color>
 </resources>

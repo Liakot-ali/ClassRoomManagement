@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ public class RoomActivity extends AppCompatActivity {
     Toolbar toolbar;
     TextView toolbarTextView;
     ListView roomListView;
+    ProgressBar progressBar;
 
     String floorRefSt, toolbarText;
     FirebaseDatabase database;
@@ -76,18 +78,21 @@ public class RoomActivity extends AppCompatActivity {
         });
 
         Adapter();
+        progressBar.setVisibility(View.GONE);
         roomListView.setAdapter(adapter);
 
         //-------For each item-------------
         roomListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                progressBar.setVisibility(View.VISIBLE);
 
                 String roomStatus = arrayList.get(position).getRoomStatus();
                 String roomRef = floorRefSt + "/RoomNo:" + arrayList.get(position).getRooNo();      //-------For every room reference----
                                                                                                    //-----AllBuildings/Building/floor/RoomNo:
                 if(roomStatus.equals("Empty"))
                 {
+                    progressBar.setVisibility(View.GONE);
                     Intent intent = new Intent(RoomActivity.this, BookedUserInformation.class);
                     intent.putExtra("RoomRef", roomRef);
                     intent.putExtra("RoomNo", arrayList.get(position).getRooNo());
@@ -112,6 +117,7 @@ public class RoomActivity extends AppCompatActivity {
                             startTime = newRoom.getStartTime();
                             endTime = newRoom.getEndTime();
 
+                            progressBar.setVisibility(View.GONE);
                             Intent intent = new Intent(RoomActivity.this, Booked_Information.class);
                             intent.putExtra("RoomNo", roomNo);
                             intent.putExtra("CourseName", className);
@@ -128,6 +134,7 @@ public class RoomActivity extends AppCompatActivity {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -144,6 +151,9 @@ public class RoomActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        progressBar = findViewById(R.id.progressBar4);
+        progressBar.setVisibility(View.VISIBLE);
 
         database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -202,19 +212,6 @@ public class RoomActivity extends AppCompatActivity {
 
                 if(statusSt.equals("Empty"))
                 {
-//                    long currentTime = System.currentTimeMillis();
-//                    long startHour, startMinute, startTimeInMills;
-//
-//                    String[] time1 = startTimeSt.split(":");
-//                    startHour = Long.parseLong(time1[0]);
-//                    String[] t1 = time1[1].split(" ");
-//                    startMinute = Long.parseLong(t1[0]);
-//                    if(t1[1].equals("pm"))
-//                    {
-//                        startHour += 12;
-//                    }
-//                    startTimeInMills = (startHour * 60 + startMinute) * 60000;
-
                     statusBtn.setBackgroundResource(R.drawable.button_design1);
                     statusBtn.setText("Empty");
                     startTime.setText("Start : 00:00");
