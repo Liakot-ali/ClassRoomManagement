@@ -43,8 +43,8 @@ public class BookedUserInformation extends AppCompatActivity {
     String roomRefSt;
     FirebaseDatabase database;
     FirebaseAuth mAuth;
-    String roomNo, crUniqueId, department, level, semester;
-    TextView toolbarTextView, bookingStartTime, bookingEndTime;
+    String roomNo, crUniqueId, department, level, semester, startTimeSt, endTimeSt;
+    TextView toolbarTextView, bookingStartTime, bookingEndTime, totalClassTime;
 
     int firstHour, firstMinute, secondHour, secondMinute;
 
@@ -166,6 +166,9 @@ public class BookedUserInformation extends AppCompatActivity {
         bookingCourseTeacher = findViewById(R.id.bookingCourseTeacher);
         bookingStartTime = findViewById(R.id.bookingStartTime);
         bookingEndTime = findViewById(R.id.bookingEndTime);
+        totalClassTime = findViewById(R.id.totalClassTime);
+        startTimeSt = "12:00 am";
+        endTimeSt = "12:00 am";
 
         bookingStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,7 +188,11 @@ public class BookedUserInformation extends AppCompatActivity {
                         try {
                             Date newDate = for24Hours.parse(time);
                             assert newDate != null;
-                            bookingStartTime.setText(for12Hours.format(newDate));
+                            startTimeSt = for12Hours.format(newDate);
+                            bookingStartTime.setText(startTimeSt);
+
+                            String classTime = ClassTime(startTimeSt, endTimeSt);
+                            totalClassTime.setText("Class time : " + classTime);
 
                         } catch (ParseException e) {
                             e.printStackTrace();
@@ -196,6 +203,8 @@ public class BookedUserInformation extends AppCompatActivity {
                 firstTime.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 firstTime.updateTime(firstHour, firstMinute);
                 firstTime.show();
+
+
             }
         });
 
@@ -217,7 +226,11 @@ public class BookedUserInformation extends AppCompatActivity {
                         try {
                             Date newDate = for24Hours.parse(time);
                             assert newDate != null;
-                            bookingEndTime.setText(for12Hours.format(newDate));
+                            endTimeSt = for12Hours.format(newDate);
+                            bookingEndTime.setText(endTimeSt);
+
+                            String classTime = ClassTime(startTimeSt, endTimeSt);
+                            totalClassTime.setText("Class time : " + classTime);
 
                         } catch (ParseException e) {
                             e.printStackTrace();
@@ -228,9 +241,12 @@ public class BookedUserInformation extends AppCompatActivity {
                 secondTime.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 secondTime.updateTime(secondHour, secondMinute);
                 secondTime.show();
+
             }
         });
 
+//        String classTime = ClassTime(startTimeSt, endTimeSt);
+//        totalClassTime.setText("Class time : " + classTime);
 
         roomRefSt = getIntent().getStringExtra("RoomRef");
         roomNo = getIntent().getStringExtra("RoomNo");
@@ -257,6 +273,40 @@ public class BookedUserInformation extends AppCompatActivity {
             }
         });
 
+    }
+
+    private String ClassTime(String startTimeSt, String endTimeSt) {
+
+        long start = TimeInMills(startTimeSt);
+        long end = TimeInMills(endTimeSt);
+        long time = end - start;
+        if(time<0)
+        {
+            return "Invalid class time";
+        }
+        else{
+            time = time / 1000;
+            long hour = time / 3600;
+            time = time % 3600;
+            long minute = time / 60;
+            return hour + "Hours, " + minute + "Minutes";
+        }
+    }
+
+    public long TimeInMills(String time)
+    {
+        long endHour, endMinute;
+
+        String[] time1 = time.split(":");
+        endHour = Long.parseLong(time1[0]);
+        String[] t1 = time1[1].split(" ");
+        endMinute = Long.parseLong(t1[0]);
+
+        if(t1[1].equals("pm") && !time1[0].equals("12"))
+        {
+            endHour += 12;
+        }
+        return (endHour * 60 + endMinute) * 60000;
     }
 
     @Override

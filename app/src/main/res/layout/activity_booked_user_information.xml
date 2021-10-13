@@ -147,7 +147,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10sp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -215,9 +214,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="@dimen/layPad"
-                    android:paddingBottom="@dimen/layPad"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/totalClassTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/normal_text"
+                        android:padding="@dimen/textPad"
+                        android:textColor="@color/toolbarBackgroundColor"
+                        android:text="Class Time : " />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/layPad"
+                    android:paddingBottom="@dimen/layPad">
 
 
                     <Button
