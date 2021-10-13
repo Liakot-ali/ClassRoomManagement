@@ -78,8 +78,6 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
         //-----------Access update profile Button from header layout-----------
         View header = navigationView.getHeaderView(0);
 
-
-
         updateProfileButton = header.findViewById(R.id.updateProfileButton);
         userProfilePicture = header.findViewById(R.id.userProfilePicture);
         userNameTextView = header.findViewById(R.id.userNameTextView);
