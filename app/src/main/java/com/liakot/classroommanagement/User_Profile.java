@@ -8,10 +8,12 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class User_Profile extends AppCompatActivity {
 
     Button updateProfileButton;
-    ImageView userProfilePicture;
+    CircleImageView userProfilePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -28,16 +29,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/userProfilePicture"
                         android:layout_width="150sp"
                         android:layout_height="150sp"
                         android:layout_gravity="center"
-
                         android:layout_marginTop="@dimen/layPad"
                         android:layout_marginBottom="@dimen/layPad"
-                        app:srcCompat="@drawable/ic_user_profile"
-                        tools:ignore="VectorDrawableCompat" />
+                        android:padding="@dimen/textPad"
+                        app:civ_border_width="@dimen/image_border"
+                        app:civ_border_color="@color/buttonBackgroundColor"
+                        android:src="@drawable/ic_user_profile" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -175,4 +177,4 @@
         </ScrollView>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

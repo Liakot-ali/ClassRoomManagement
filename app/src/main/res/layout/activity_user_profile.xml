@@ -24,13 +24,15 @@
             android:gravity="left"
             android:orientation="vertical">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userProfilePicture"
                 android:layout_width="90sp"
                 android:layout_height="90sp"
+                app:civ_border_width="@dimen/image_border"
+                app:civ_border_color="@color/white"
+                android:padding="@dimen/textPad"
                 android:layout_gravity="left"
-                app:srcCompat="@drawable/ic_user_profile"
-                tools:ignore="VectorDrawableCompat" />
+                android:src="@drawable/ic_user_profile"/>
         </LinearLayout>
 
         <LinearLayout

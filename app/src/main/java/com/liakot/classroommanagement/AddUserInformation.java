@@ -12,7 +12,8 @@ public class AddUserInformation {
     private String userEmail;
     private String userDepartment;
     private String userUniqueId;
-    String profilePicture;
+    private String profilePicture;
+    private String pictureVisibility;
 
     public AddUserInformation()
     {
@@ -33,6 +34,22 @@ public class AddUserInformation {
         this.profilePicture = profilePicture;
         this.userUniqueId = userUniqueId;
     }
+
+    public  AddUserInformation(String userName, String userEmail, String userPhoneNumber, String userSID, String userDepartment, String userLevel, String userSemester, String userSession, String userPass, String profilePicture, String userUniqueId, String pictureVisibility) {
+        this.userName=userName;
+        this.userEmail=userEmail;
+        this.userPhoneNumber = userPhoneNumber;
+        this.userSID = userSID;
+        this.userDepartment = userDepartment;
+        this.userLevel = userLevel;
+        this.userSemester = userSemester;
+        this.userSession = userSession;
+        this.userPass = userPass;
+        this.profilePicture = profilePicture;
+        this.userUniqueId = userUniqueId;
+        this.pictureVisibility = pictureVisibility;
+    }
+
 
     public String getUserName() {
         return userName;
@@ -120,5 +137,13 @@ public class AddUserInformation {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public String getPictureVisibility() {
+        return pictureVisibility;
+    }
+
+    public void setPictureVisibility(String pictureVisibility) {
+        this.pictureVisibility = pictureVisibility;
     }
 }

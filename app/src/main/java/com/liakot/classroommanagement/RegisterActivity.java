@@ -2,6 +2,7 @@ package com.liakot.classroommanagement;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -31,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+//    private static final String LOGIN_PRE = "LogInInformation";
     Toolbar toolbar;
     Button registerUserSignInButton, resisterUserRegisterButton;
     Spinner departmentSpinner, levelSpinner, semesterSpinner;
@@ -89,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         levelSpinner = findViewById(R.id.registerLevelSpinner);
         semesterSpinner = findViewById(R.id.registerSemesterSpinner);
 
-        registerUserName = findViewById(R.id.registerRememberMe);
+        rememberMe = findViewById(R.id.registerRememberMe);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -219,7 +221,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                                         //----------------store all information into database----------
                                         userSidRef.child("SID").child(userStudentId).setValue(userStudentId);
                                         userSidRef.child("Phone").child(userPhoneNumber).setValue(userPhoneNumber);
-                                        AddUserInformation userInformation = new AddUserInformation(userName, userEmail, userPhoneNumber, userStudentId, userDepartment, userLevel, userSemester, userSession, userPassword, "", userUniqueId);
+                                        AddUserInformation userInformation = new AddUserInformation(userName, userEmail, userPhoneNumber, userStudentId, userDepartment, userLevel, userSemester, userSession, userPassword, "", userUniqueId, "true");
                                         profileRef.setValue(userInformation).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -228,8 +230,13 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                                                 {
                                                     if (rememberMe.isChecked())
                                                     {
-                                                        //TODO
-                                                        Toast.makeText(RegisterActivity.this, "Checkbox Checked", Toast.LENGTH_SHORT).show();
+                                                        // ----------- to skip login activity if user is logged in-----------
+                                                        SharedPreferences preferences = getSharedPreferences(MainActivity.LOGIN_PRE, Context.MODE_PRIVATE);
+                                                        SharedPreferences.Editor editor = preferences.edit();
+                                                        editor.putBoolean("hasLoggedIn", true);
+                                                        editor.putString("userEmail", userEmail);
+                                                        editor.putString("userPassword", userPassword);
+                                                        editor.apply();
                                                     }
                                                     Toast.makeText(getApplicationContext(), "Register is Successful", Toast.LENGTH_LONG).show();
                                                     Intent intent = new Intent(RegisterActivity.this, MenuActivitySide.class);

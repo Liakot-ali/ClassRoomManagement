@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,9 +26,10 @@ public class Booked_Information extends AppCompatActivity {
     Button contactWithCrButton;
     TextView bookedDepartment, bookedLevel, bookedSemester, bookedCourseName, toolbarTextView;
     TextView bookedCourseCode, bookedCourseTeacher, bookedStartTime, bookedEndTime;
+    ProgressBar progressBar;
 
     String roomNo, courseName, courseCode, teacherName, department, level, semester, startTime, endTime, crUniqueId;
-    String crName, crPhone, crEmail, crStudentId, crSession, crProfilePicture;
+    String crName, crPhone, crEmail, crStudentId, crSession, crProfilePicture, crLevel, crSemester, crDepartment, pictureVisibility;
     FirebaseDatabase database;
 
 
@@ -52,6 +54,10 @@ public class Booked_Information extends AppCompatActivity {
                 crStudentId = crInformation.getUserSID();
                 crProfilePicture = crInformation.getProfilePicture();
                 crSession = crInformation.getUserSession();
+                crLevel = crInformation.getUserLevel();
+                crSemester = crInformation.getUserSemester();
+                crDepartment = crInformation.getUserDepartment();
+                pictureVisibility = crInformation.getPictureVisibility();
             }
 
             @Override
@@ -72,6 +78,7 @@ public class Booked_Information extends AppCompatActivity {
         contactWithCrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 Intent intent = new Intent(Booked_Information.this,ContactWithCr.class);
                 intent.putExtra("CrName", crName);
                 intent.putExtra("CrEmail", crEmail);
@@ -79,7 +86,12 @@ public class Booked_Information extends AppCompatActivity {
                 intent.putExtra("CrSID", crStudentId);
                 intent.putExtra("CrSession", crSession);
                 intent.putExtra("CrPicture", crProfilePicture);
+                intent.putExtra("CrLevel", crLevel);
+                intent.putExtra("CrSemester", crSemester);
+                intent.putExtra("CrDepartment", crDepartment);
+                intent.putExtra("Visibility", pictureVisibility);
                 startActivity(intent);
+                progressBar.setVisibility(View.GONE);
             }
         });
 
@@ -107,6 +119,8 @@ public class Booked_Information extends AppCompatActivity {
         bookedCourseName = findViewById(R.id.bookedCourseName);
         bookedCourseCode = findViewById(R.id.bookedCourseCode);
         bookedCourseTeacher = findViewById(R.id.bookedCourseTeacher);
+
+        progressBar = findViewById(R.id.progressBar7);
 
         roomNo = getIntent().getStringExtra("RoomNo");
         courseName = getIntent().getStringExtra("CourseName");

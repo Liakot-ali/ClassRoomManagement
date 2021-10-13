@@ -43,11 +43,11 @@ public class CrContact extends AppCompatActivity {
     FirebaseAuth mAuth;
     BaseAdapter adapter;
     DatabaseReference userRef;
-    String[] crName = {"Mostakim Ara", "Shahariar Shishir", "Mostakim Ara", "Shahariar Shishir", "Mostakim Ara", "Shahariar Shishir", "Mostakim Ara", "Shahariar Shishir"};
-    String[] department = {"aknflakd", "lafjirks", "abfkdj", "aknflakd", "lafjirks", "abfkdj", "aknflakd", "lafjirks"};
-    String[] level = {"1", "2", "1", "2", "1", "2", "1", "2"};
-    String[] semester = {"I", "II", "I", "II", "I", "II", "I", "II"};
-    String[] contact = {"1234568", "1465484564", "1234568", "1465484564", "1234568", "1465484564", "1234568", "1465484564"};
+//    String[] crName = {"Mostakim Ara", "Shahariar Shishir", "Mostakim Ara", "Shahariar Shishir", "Mostakim Ara", "Shahariar Shishir", "Mostakim Ara", "Shahariar Shishir"};
+//    String[] department = {"aknflakd", "lafjirks", "abfkdj", "aknflakd", "lafjirks", "abfkdj", "aknflakd", "lafjirks"};
+//    String[] level = {"1", "2", "1", "2", "1", "2", "1", "2"};
+//    String[] semester = {"I", "II", "I", "II", "I", "II", "I", "II"};
+//    String[] contact = {"1234568", "1465484564", "1234568", "1465484564", "1234568", "1465484564", "1234568", "1465484564"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +93,7 @@ public class CrContact extends AppCompatActivity {
                 intent.putExtra("CrLevel", arrayList.get(position).getUserLevel());
                 intent.putExtra("CrSemester", arrayList.get(position).getUserSemester());
                 intent.putExtra("CrDepartment", arrayList.get(position).getUserDepartment());
+                intent.putExtra("Visibility", arrayList.get(position).getPictureVisibility());
 
                 startActivity(intent);
             }

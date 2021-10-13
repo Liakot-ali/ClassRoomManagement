@@ -21,6 +21,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserProfileFragment extends Fragment {
 
@@ -31,7 +34,7 @@ public class UserProfileFragment extends Fragment {
     private String name, email, department, level, semester, session, sID, phoneNumber, userUniqueId, profilePictureSt;
     Button updateProfileButton;
     private TextView userName, userEmail, userDepartment, userLevel, userSemester, userSession, userPhoneNumber, userSID;
-    private ImageView userProfilePicture;
+    private CircleImageView userProfilePicture;
 
     @Nullable
     @Override
@@ -93,8 +96,7 @@ public class UserProfileFragment extends Fragment {
 
                 if(!profilePictureSt.isEmpty())
                 {
-                    //TODO
-                    Toast.makeText(getActivity(), "Profile picture found", Toast.LENGTH_SHORT).show();
+                    Picasso.get().load(userProfile.getProfilePicture()).into(userProfilePicture);
                 }
                 userName.setText("Name : " + name);
                 userEmail.setText("Email : " + email);

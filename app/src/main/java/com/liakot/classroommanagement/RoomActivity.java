@@ -228,6 +228,8 @@ public class RoomActivity extends AppCompatActivity {
 
                     Log.e("Time", "getView: Current time" + currentTime);
                     Log.e("Time", "getView: End time" + endTimeInMillis);
+                    Log.e("Time", "getView: Present Time in String" + presentTime);
+                    Log.e("Time", "getView: End time in String" + endTimeSt);
 
                     if(endTimeInMillis>=currentTime)
                     {
@@ -237,12 +239,12 @@ public class RoomActivity extends AppCompatActivity {
                         endTime.setText("End : " + endTimeSt);
                     }
                     else{
+                        MakeEmpty(arrayList.get(position).getRooNo(), arrayList.get(position).getCrUniqueId());
                         statusBtn.setBackgroundResource(R.drawable.button_design1);
                         statusBtn.setText("Empty");
                         startTime.setText("Start : 00:00");
                         endTime.setText("End : 00:00");
 
-                        MakeEmpty(arrayList.get(position).getRooNo(), arrayList.get(position).getCrUniqueId());
                     }
 
                 }
@@ -281,7 +283,7 @@ public class RoomActivity extends AppCompatActivity {
         String[] t1 = time1[1].split(" ");
         endMinute = Long.parseLong(t1[0]);
 
-        if(t1[1].equals("pm"))
+        if(t1[1].equals("pm") && !time1[0].equals("12"))
         {
             endHour += 12;
         }

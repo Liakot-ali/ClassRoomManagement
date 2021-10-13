@@ -73,12 +73,15 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/userProfilePicture"
                         android:layout_width="100sp"
                         android:layout_height="100sp"
                         android:layout_gravity="center"
                         android:layout_weight="1"
+                        app:civ_border_color="@color/buttonBackgroundColor"
+                        app:civ_border_width="@dimen/image_border"
+                        android:padding="@dimen/textPad"
                         android:src="@drawable/ic_user_profile" />
 
                     <Button

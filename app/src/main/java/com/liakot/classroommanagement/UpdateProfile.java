@@ -41,6 +41,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class UpdateProfile extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final int PICK_IMAGE = 100;
@@ -50,7 +52,7 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
     EditText updateUserName, updateUserEmail, updateUserPhoneNumber, updateUserSession;
     TextView userStudentId;
     Spinner updateDepartmentSpinner, updateLevelSpinner, updateSemesterSpinner;
-    ImageView userProfileImage;
+    CircleImageView userProfileImage;
     Uri targetUri;
     ProgressBar progressBar;
     CheckBox notVisible;
@@ -93,6 +95,26 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
                 updateLevelSpinner.setSelection(levelAdapter.getPosition(userProfile.getUserLevel()));
                 updateSemesterSpinner.setSelection(semesterAdapter.getPosition(userProfile.getUserSemester()));
 
+                if(!userProfile.getProfilePicture().isEmpty()){
+                    Picasso.get().load(userProfile.getProfilePicture()).into(userProfileImage);
+                }
+
+                addAnImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //TODO--Load an image from files to imageview
+                        //------------- for hide the keyboard------
+                        InputMethodManager methodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        methodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+                        //---------for open gallery----------
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+                    }
+                });
+
                 updateButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -110,37 +132,77 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
                         userStudentID = userProfile.getUserSID();
                         userPassword = userProfile.getUserPass();
                         userId = userProfile.getUserUniqueId();
-                        visibility = String.valueOf(notVisible.isChecked());
-                        //TODO
                         userPictureSt = userProfile.getProfilePicture();
+
+                        visibility = String.valueOf(!notVisible.isChecked());
 
                         userDepartment = updateDepartmentSpinner.getSelectedItem().toString();
                         userLevel = updateLevelSpinner.getSelectedItem().toString();
                         userSemester = updateSemesterSpinner.getSelectedItem().toString();
 
-                        AddUserInformation user = new AddUserInformation(userName, userEmail, userPhoneNumber, userStudentID, userDepartment, userLevel, userSemester, userSession, userPassword, userPictureSt, userUniqueId);
-                        profileRef.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful())
-                                {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(UpdateProfile.this, "Your Profile is update", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(UpdateProfile.this, MenuActivitySide.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                    finish();
+                        if (targetUri == null) {
+                            AddUserInformation user = new AddUserInformation(userName, userEmail, userPhoneNumber, userStudentID, userDepartment, userLevel, userSemester, userSession, userPassword, userPictureSt, userUniqueId, visibility);
+                            profileRef.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(UpdateProfile.this, "Your Profile is update", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(UpdateProfile.this, MenuActivitySide.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(intent);
+                                        finish();
 
+                                    } else {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(UpdateProfile.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                                else{
+                            });
+                        }
+                        else{
+                            String imageName = userUniqueId + getFileExtension(targetUri);
+                            StorageReference sRef = storage.getReference("Student").child(userUniqueId).child("ProfilePhoto").child(imageName);
+                            sRef.putFile(targetUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                    sRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            AddUserInformation user = new AddUserInformation(userName, userEmail, userPhoneNumber, userStudentID, userDepartment, userLevel, userSemester, userSession, userPassword, uri.toString(), userUniqueId, visibility);
+                                            profileRef.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful())
+                                                    {
+                                                        progressBar.setVisibility(View.GONE);
+                                                        Toast.makeText(UpdateProfile.this, "Your Profile is update", Toast.LENGTH_SHORT).show();
+                                                        Intent intent = new Intent(UpdateProfile.this, MenuActivitySide.class);
+                                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                    else{
+                                                        progressBar.setVisibility(View.GONE);
+                                                        Toast.makeText(UpdateProfile.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
                                     progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(UpdateProfile.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(UpdateProfile.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                                 }
-                            }
-                        });
-
+                            });
+                        }
                     }
+
                 });
             }
             @Override
@@ -186,25 +248,21 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
         notVisible = findViewById(R.id.updateCheckBox);
 
 
-        addAnImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //----------for add image------------
-//                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, PICK_IMAGE);
-            }
-        });
+//        addAnImageButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //----------for add image------------
+//
+//
+////                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(intent, PICK_IMAGE);
+//            }
+//        });
 
 
-    }
-
-    private String getFileExtension(Uri imageUri) {
-        ContentResolver contentResolver = getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(imageUri));
     }
 
     private void SpinnerAll() {
@@ -226,6 +284,12 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
 
     }
 
+    private String getFileExtension(Uri imageUri) {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(imageUri));
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -241,8 +305,10 @@ public class UpdateProfile extends AppCompatActivity implements AdapterView.OnIt
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             targetUri = data.getData();
-            Picasso.with(this).load(targetUri).into(userProfileImage);
-//            userProfileImage.setImageURI(targetUri);
+            Picasso.get().load(targetUri).into(userProfileImage);
+        }
+        else{
+            targetUri = null;
         }
     }
 

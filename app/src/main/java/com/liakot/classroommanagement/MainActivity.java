@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String LOGIN_PRE = "LogInInformation";
     Button loginUserRegisterButton;
     Button loginUserLoginButton;
     EditText logInUserEmail, logInUserPassword;
@@ -111,9 +113,13 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     if(rememberMe.isChecked())
                     {
-                        //TODO
-                        Toast.makeText(MainActivity.this, "Checked", Toast.LENGTH_SHORT).show();
-//                        SharedPreferences preferences = new SharedPreferences.Editor();
+                        // ----------- to skip login activity if user is logged in-----------
+                        SharedPreferences preferences = getSharedPreferences(MainActivity.LOGIN_PRE, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putBoolean("hasLoggedIn", true);
+                        editor.putString("userEmail", userEmail);
+                        editor.putString("userPassword", userPass);
+                        editor.apply();
                     }
                     Toast.makeText(getApplicationContext(), "Log In Successful", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(MainActivity.this, MenuActivitySide.class);
@@ -130,4 +136,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

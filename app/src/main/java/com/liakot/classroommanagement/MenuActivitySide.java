@@ -2,8 +2,10 @@ package com.liakot.classroommanagement;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,9 +30,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MenuActivitySide extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    //    private static final String LOGIN_PRE = "LogInInformation";
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -40,7 +47,7 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
 
     TextView userNameTextView, userEmailTextView;
     Button updateProfileButton;
-    ImageView userProfilePicture;
+    CircleImageView userProfilePicture;
     TextView toolbarTextView;
 
     @Override
@@ -96,13 +103,12 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
 
                 userEmailTextView.setText(userEmail);
                 userNameTextView.setText(userName);
-                if(!profilePicture.isEmpty())
-                {
-                    //TODO
-                    Toast.makeText(getApplicationContext(), "Profile picture found",Toast.LENGTH_SHORT).show();
+                if (!profilePicture.isEmpty()) {
+                    Picasso.get().load(profile.getProfilePicture()).into(userProfilePicture);
                 }
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -137,12 +143,20 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
         });
     }
 
+    //----------Double press to exit---------
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //---------- double back press to exit
+            if (onBackPressedTime + 2000 > System.currentTimeMillis()) {
+                super.onBackPressed();
+                return;
+            } else {
+                Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+            }
+            onBackPressedTime = System.currentTimeMillis();
         }
     }
 
@@ -212,6 +226,13 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
                 dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        // ----------- set sharedPreference false-----------
+                        SharedPreferences preferences = getSharedPreferences(MainActivity.LOGIN_PRE, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putBoolean("hasLoggedIn", false);
+                        editor.apply();
+
                         mAuth.signOut();
                         Intent intent1 = new Intent(MenuActivitySide.this, MainActivity.class);
                         intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -242,4 +263,7 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
         }
         return true;
     }
+
+    private long onBackPressedTime;
+
 }

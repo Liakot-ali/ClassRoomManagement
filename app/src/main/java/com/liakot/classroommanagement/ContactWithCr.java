@@ -10,14 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.squareup.picasso.Picasso;
+
 import org.w3c.dom.Text;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContactWithCr extends AppCompatActivity {
 
     Toolbar toolbar;
-    String name, phone, studentId, email, session, picture, department, level, semester;
+    String name, phone, studentId, email, session, picture, department, level, semester, visibility;
     TextView crName, crPhone, crStudentId, crSession, crEmail, crDepartment, crLevel, crSemester;
-    ImageView crPicture;
+    CircleImageView crPicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +62,11 @@ public class ContactWithCr extends AppCompatActivity {
         department = getIntent().getStringExtra("CrDepartment");
         level = getIntent().getStringExtra("CrLevel");
         semester = getIntent().getStringExtra("CrSemester");
+        visibility = getIntent().getStringExtra("Visibility");
 
-        //TODO
-
-        if (!picture.isEmpty())
+        if (!picture.isEmpty() && visibility.equals("true"))
         {
-            Toast.makeText(this, "Profile picture found", Toast.LENGTH_SHORT).show();
+            Picasso.get().load(picture).into(crPicture);
         }
         crName.setText("Name : " + name);
         crEmail.setText("Email : " + email);
