@@ -1,7 +1,7 @@
 package com.liakot.classroommanagement;
 
 public class RoomActivityClass {
-    String rooNo, roomStatus, className, courseName, teacherName, departmentName, crUniqueId, startTime, endTime, level, semester;
+    String rooNo, roomStatus, className, courseName, teacherName, departmentName, crUniqueId, startTime, endTime, level, semester, roomRef;
 
     public RoomActivityClass(){
 
@@ -30,6 +30,21 @@ public class RoomActivityClass {
         this.crUniqueId = crUniqueId;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public RoomActivityClass(String rooNo, String roomStatus, String className, String courseName, String teacherName, String departmentName, String level, String semester, String crUniqueId, String startTime, String endTime, String roomRef) {
+        this.rooNo = rooNo;
+        this.roomStatus = roomStatus;
+        this.className = className;
+        this.courseName = courseName;
+        this.teacherName = teacherName;
+        this.departmentName = departmentName;
+        this.level = level;
+        this.semester = semester;
+        this.crUniqueId = crUniqueId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.roomRef = roomRef;
     }
 
     public String getRooNo() {
@@ -118,5 +133,13 @@ public class RoomActivityClass {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getRoomRef() {
+        return roomRef;
+    }
+
+    public void setRoomRef(String roomRef) {
+        this.roomRef = roomRef;
     }
 }

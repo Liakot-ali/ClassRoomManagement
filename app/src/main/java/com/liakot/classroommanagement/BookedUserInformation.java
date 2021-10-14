@@ -112,14 +112,15 @@ public class BookedUserInformation extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
                     String userUniqueId = mAuth.getUid();
                     assert userUniqueId != null;
-                    final DatabaseReference userRoomRef = database.getReference("Student").child("User").child(userUniqueId).child("MyRoom");
+                    final DatabaseReference userRoomRef = database.getReference("Student").child("User").child(userUniqueId).child("MyRoom").child(roomNo);
                     roomStatus = "Booked";
                     final RoomActivityClass newRoom = new RoomActivityClass(roomNo, roomStatus, courseName, courseCode, teacherName, department, level, semester, crUniqueId, startTime, endTime);
                     roomRef.setValue(newRoom).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                userRoomRef.setValue(newRoom).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                RoomActivityClass newRoom1 = new RoomActivityClass(roomNo, roomStatus, courseName, courseCode, teacherName, department, level, semester, crUniqueId, startTime, endTime, roomRefSt);
+                                userRoomRef.setValue(newRoom1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         progressBar.setVisibility(View.GONE);
@@ -302,7 +303,7 @@ public class BookedUserInformation extends AppCompatActivity {
         String[] t1 = time1[1].split(" ");
         endMinute = Long.parseLong(t1[0]);
 
-        if(t1[1].equals("pm") && !time1[0].equals("12"))
+        if(t1[1].toLowerCase().equals("pm") && !time1[0].equals("12"))
         {
             endHour += 12;
         }

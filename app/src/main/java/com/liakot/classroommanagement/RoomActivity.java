@@ -99,45 +99,21 @@ public class RoomActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-                    DatabaseReference room = FirebaseDatabase.getInstance().getReferenceFromUrl(roomRef);
-                    room.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String roomNo, className, courseCode, teacherName, departmentName, level, semester, crUniqueId, startTime, endTime;
-                            RoomActivityClass newRoom = snapshot.getValue(RoomActivityClass.class);
-                            assert newRoom != null;
-                            roomNo = newRoom.getRooNo();
-                            className = newRoom.getClassName();
-                            courseCode = newRoom.getCourseName();
-                            teacherName = newRoom.getTeacherName();
-                            departmentName = newRoom.getDepartmentName();
-                            level = newRoom.getLevel();
-                            semester = newRoom.getSemester();
-                            crUniqueId = newRoom.getCrUniqueId();
-                            startTime = newRoom.getStartTime();
-                            endTime = newRoom.getEndTime();
 
-                            progressBar.setVisibility(View.GONE);
-                            Intent intent = new Intent(RoomActivity.this, Booked_Information.class);
-                            intent.putExtra("RoomNo", roomNo);
-                            intent.putExtra("CourseName", className);
-                            intent.putExtra("CourseCode", courseCode);
-                            intent.putExtra("TeacherName", teacherName);
-                            intent.putExtra("DepartmentName", departmentName);
-                            intent.putExtra("Level",level);
-                            intent.putExtra("Semester", semester);
-                            intent.putExtra("CrUniqueId", crUniqueId);
-                            intent.putExtra("StartTime", startTime);
-                            intent.putExtra("EndTime", endTime);
-                            startActivity(intent);
-                        }
+                    progressBar.setVisibility(View.GONE);
+                    Intent intent = new Intent(RoomActivity.this, Booked_Information.class);
+                    intent.putExtra("RoomNo", arrayList.get(position).getRooNo());
+                    intent.putExtra("CourseName", arrayList.get(position).getClassName());
+                    intent.putExtra("CourseCode", arrayList.get(position).getCourseName());
+                    intent.putExtra("TeacherName", arrayList.get(position).getTeacherName());
+                    intent.putExtra("DepartmentName", arrayList.get(position).getDepartmentName());
+                    intent.putExtra("Level",arrayList.get(position).getLevel());
+                    intent.putExtra("Semester", arrayList.get(position).getSemester());
+                    intent.putExtra("CrUniqueId", arrayList.get(position).getCrUniqueId());
+                    intent.putExtra("StartTime", arrayList.get(position).getStartTime());
+                    intent.putExtra("EndTime", arrayList.get(position).getEndTime());
+                    startActivity(intent);
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
                 }
             }
         });
@@ -213,7 +189,7 @@ public class RoomActivity extends AppCompatActivity {
                 if(statusSt.equals("Empty"))
                 {
                     statusBtn.setBackgroundResource(R.drawable.button_design1);
-                    statusBtn.setText("Empty");
+                    statusBtn.setText(statusSt);
                     startTime.setText("Start : 00:00");
                     endTime.setText("End : 00:00");
                 }
@@ -234,19 +210,18 @@ public class RoomActivity extends AppCompatActivity {
                     if(endTimeInMillis>=currentTime)
                     {
                         statusBtn.setBackgroundResource(R.drawable.button_design_red);
-                        statusBtn.setText("Booked");
+                        statusBtn.setText(statusSt);
                         startTime.setText("Start : " + startTimeSt);
                         endTime.setText("End : " + endTimeSt);
                     }
                     else{
+                        arrayList.get(position).setRoomStatus("Empty");
                         MakeEmpty(arrayList.get(position).getRooNo(), arrayList.get(position).getCrUniqueId());
                         statusBtn.setBackgroundResource(R.drawable.button_design1);
-                        statusBtn.setText("Empty");
+                        statusBtn.setText(arrayList.get(position).getRoomStatus());
                         startTime.setText("Start : 00:00");
                         endTime.setText("End : 00:00");
-
                     }
-
                 }
                 roomNo.setText("Room No: " + roomNoSt);
 
@@ -258,7 +233,7 @@ public class RoomActivity extends AppCompatActivity {
     //---------Make the room empty and remove form Cr MyRoom --------------
     private void MakeEmpty(String roomNo, String crUniqueId) {
 
-        final DatabaseReference crRef = database.getReference("Student").child("User").child(crUniqueId).child("MyRoom");
+        final DatabaseReference crRef = database.getReference("Student").child("User").child(crUniqueId).child("MyRoom").child(roomNo);
         RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "", "", "", "");
         floorRef.child("RoomNo:" + roomNo).setValue(newRoom).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -271,7 +246,6 @@ public class RoomActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     public long TimeInMills(String time)
@@ -283,7 +257,7 @@ public class RoomActivity extends AppCompatActivity {
         String[] t1 = time1[1].split(" ");
         endMinute = Long.parseLong(t1[0]);
 
-        if(t1[1].equals("pm") && !time1[0].equals("12"))
+        if(t1[1].toLowerCase().equals("pm") && !time1[0].equals("12"))
         {
             endHour += 12;
         }

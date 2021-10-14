@@ -200,6 +200,14 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
                 }
                 break;
 
+            case R.id.nav_my_room:
+                Intent intent3 = new Intent(MenuActivitySide.this, MyRoomActivity.class);
+                startActivity(intent3);
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                break;
+
             case R.id.developer_name:
                 Intent intent = new Intent(MenuActivitySide.this, ActivityDevelopers.class);
                 startActivity(intent);

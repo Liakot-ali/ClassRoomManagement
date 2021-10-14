@@ -14,9 +14,9 @@
             android:icon="@drawable/ic_user_profile"
             android:title="Profile" />
         <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/ic_share_this"
-            android:title="Share" />
+            android:id="@+id/nav_my_room"
+            android:icon="@drawable/ic_room"
+            android:title="My Room" />
     </group>
 
     <item android:title="Contact"
