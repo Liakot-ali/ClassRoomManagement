@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 public class AcademicBuilding3 extends AppCompatActivity {
 
 
-    String[] floor0RoomNo = {"Room No: 101", "Room No: 102", "Room No: 103", "Room No: 104", "Room No: 105",
+   /* String[] floor0RoomNo = {"Room No: 101", "Room No: 102", "Room No: 103", "Room No: 104", "Room No: 105",
             "Room No: 106", "Room No: 107", "Room No: 108", "Room No: 109", "Room No: 110", "Room No: 111",
             "Room No: 112", "Room No: 113", "Room No: 114", "Room No: 115", "Room No: 135", "Room No: 136",
             "Room No: 137", "Room No: 138", "Room No: 139", "Room No: 140", "Room No: 141", "Room No: 142", "Room No: 143"};
@@ -70,7 +71,7 @@ public class AcademicBuilding3 extends AppCompatActivity {
             "Enroll", "Booked", "Enroll", "Enroll", "Booked", "Booked", "Enroll", "Booked", "Enroll", "Enroll", "Booked", "Booked"};
 
     String[] floor3Enroll = {"Booked", "Booked", "Enroll", "Booked", "Enroll", "Booked","Booked", "Booked", "Enroll", "Booked", "Enroll", "Booked",
-            "Booked", "Booked", "Enroll", "Booked", "Enroll", "Booked","Booked", "Booked", "Enroll", "Booked", "Enroll", "Booked"};
+            "Booked", "Booked", "Enroll", "Booked", "Enroll", "Booked","Booked", "Booked", "Enroll", "Booked", "Enroll", "Booked"};*/
 
 
     Button academic3GroundFloor, academic3FirstFloor, academic3SecondFloor,academic3ThirdFloor;
@@ -84,8 +85,15 @@ public class AcademicBuilding3 extends AppCompatActivity {
     }
 
     private void InitializeAll() {
+        //--------for back button in menu bar-----------
+        toolbar=findViewById(R.id.toolbarDemo);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
+        //-----------Initialization section----------
         academic3GroundFloor = findViewById(R.id.academic3GroundFloor);
         academic3FirstFloor = findViewById(R.id.academic3FirstFloor);
         academic3SecondFloor = findViewById(R.id.academic3SecondFloor);
@@ -94,55 +102,30 @@ public class AcademicBuilding3 extends AppCompatActivity {
         academic3GroundFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AcademicBuilding3.this, RoomActivity.class);
-                intent.putExtra("room no", floor0RoomNo);
-                intent.putExtra("start time", floor0StartTime);
-                intent.putExtra("end time", floor0EndTime);
-                intent.putExtra("enroll or booked", floor0Enroll);
-                startActivity(intent);
+                Toast.makeText(AcademicBuilding3.this, "This is under construction", Toast.LENGTH_SHORT).show();
             }
         });
 
         academic3FirstFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AcademicBuilding3.this, RoomActivity.class);
-                intent.putExtra("room no", floor1RoomNo);
-                intent.putExtra("start time", floor1StartTime);
-                intent.putExtra("end time", floor1EndTime);
-                intent.putExtra("enroll or booked", floor1Enroll);
-                startActivity(intent);
+                Toast.makeText(AcademicBuilding3.this, "This is under construction", Toast.LENGTH_SHORT).show();
             }
         });
 
         academic3SecondFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AcademicBuilding3.this, RoomActivity.class);
-                intent.putExtra("room no", floor2RoomNo);
-                intent.putExtra("start time", floor2StartTime);
-                intent.putExtra("end time", floor2EndTime);
-                intent.putExtra("enroll or booked", floor2Enroll);
-                startActivity(intent);
+                Toast.makeText(AcademicBuilding3.this, "This is under construction", Toast.LENGTH_SHORT).show();
             }
         });
         academic3ThirdFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AcademicBuilding3.this, RoomActivity.class);
-                intent.putExtra("room no", floor3RoomNo);
-                intent.putExtra("start time", floor3StartTime);
-                intent.putExtra("end time", floor3EndTime);
-                intent.putExtra("enroll or booked", floor3Enroll);
-                startActivity(intent);
+                Toast.makeText(AcademicBuilding3.this, "This is under construction", Toast.LENGTH_SHORT).show();
             }
         });
-        //--------for back button in menu bar-----------
-        toolbar=findViewById(R.id.toolbarDemo);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

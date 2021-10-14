@@ -15,8 +15,6 @@ public class EmergencyContact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_contact);
 
-
-
         toolbar = findViewById(R.id.toolbarDemo);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

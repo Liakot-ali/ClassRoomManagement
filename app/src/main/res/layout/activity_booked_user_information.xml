@@ -94,7 +94,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Course Tittle"
+                        android:hint="Computer Organization"
                         android:inputType="textPersonName" />
                 </LinearLayout>
 
@@ -117,7 +117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Course Code"
+                        android:hint="CSE 255"
                         android:inputType="textPersonName" />
                 </LinearLayout>
 
@@ -140,7 +140,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Teacher Name"
+                        android:hint="Mohammad Nadim"
                         android:inputType="textPersonName" />
                 </LinearLayout>
 

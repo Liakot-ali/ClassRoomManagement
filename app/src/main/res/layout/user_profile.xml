@@ -53,6 +53,7 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:padding="@dimen/textPad"
+                            android:textIsSelectable="true"
                             android:text="Name"
                             android:textColor="@color/normalTextColor"
                             android:textSize="@dimen/normal_text" />
@@ -64,6 +65,7 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:padding="@dimen/textPad"
+                            android:textIsSelectable="true"
                             android:text="Email"
                             android:textColor="@color/normalTextColor"
                             android:textSize="@dimen/normal_text" />
@@ -74,6 +76,7 @@
                             android:layout_height="wrap_content"
                             android:padding="@dimen/textPad"
                             android:text="Phone"
+                            android:textIsSelectable="true"
                             android:textColor="@color/normalTextColor"
                             android:textSize="@dimen/normal_text" />
 
@@ -97,6 +100,7 @@
                             android:layout_height="wrap_content"
                             android:padding="@dimen/textPad"
                             android:text="Student ID:"
+                            android:textIsSelectable="true"
                             android:textColor="@color/normalTextColor"
                             android:textSize="@dimen/normal_text" />
 
@@ -106,6 +110,7 @@
                             android:layout_height="wrap_content"
                             android:padding="@dimen/textPad"
                             android:text="Department"
+                            android:textIsSelectable="true"
                             android:textColor="@color/normalTextColor"
                             android:textSize="@dimen/normal_text" />
 
@@ -140,6 +145,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/textPad"
+                            android:textIsSelectable="true"
                             android:text="Session:"
                             android:textColor="@color/normalTextColor"
                             android:textSize="@dimen/normal_text" />

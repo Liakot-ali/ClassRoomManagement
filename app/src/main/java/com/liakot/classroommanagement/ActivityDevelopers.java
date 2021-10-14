@@ -13,11 +13,12 @@ public class ActivityDevelopers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_developers);
+
         InitializeAll();
     }
 
     private void InitializeAll() {
-        toolbar=findViewById(R.id.toolbarDemo);
+        toolbar = findViewById(R.id.toolbarDemo);
         setSupportActionBar(toolbar);
 
         //--------for menu back button-----------

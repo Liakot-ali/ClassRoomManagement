@@ -62,6 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mr. Example"
+        android:textIsSelectable="true"
         android:textSize="@dimen/normal_text"
         android:textColor="@color/normalTextColor"/>
 

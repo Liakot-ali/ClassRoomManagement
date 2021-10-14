@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ContactWithUs">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progressBar8"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="@dimen/progressBarSize"
+            android:layout_height="@dimen/progressBarSize"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -40,52 +56,58 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Contact With Us"
+                    android:text="Comment"
                     android:textColor="@color/toolbarTextColor"
                     android:textSize="@dimen/toolbar_text" />
             </LinearLayout>
 
         </RelativeLayout>
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10sp"
+            android:layout_marginTop="@dimen/layPad"
+            android:layout_marginBottom="@dimen/layPad"
+            android:paddingBottom="20sp">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/textView17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10sp"
-                android:paddingBottom="20sp"
-                android:orientation="vertical" >
+                android:text="Write your opinion"
+                android:padding="@dimen/textPad"
+                android:textColor="@color/normalTextColor"
+                android:textSize="@dimen/normal_text" />
 
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Write your opinion"
-                    android:textColor="@color/normalTextColor"
-                    android:textSize="@dimen/normal_text" />
+            <EditText
+                android:id="@+id/commentText"
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:ems="10"
+                android:gravity="bottom"
+                android:hint="Write here..."
+                android:inputType="textMultiLine" />
 
-                <EditText
-                    android:id="@+id/editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:hint="Write here..." />
+        </LinearLayout>
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@android:style/Widget.Button.Small"
-                    android:textSize="@dimen/button_text"
-                    android:textColor="@color/buttonTextColor"
-                    android:background="@drawable/button_design"
-                    android:text="Button" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/layPad"
+            android:orientation="vertical">
 
-            </LinearLayout>
-        </ScrollView>
+            <Button
+                android:id="@+id/commentButton"
+                style="@android:style/Widget.Button.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_design"
+                android:text="Comment"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="@dimen/button_text" />
+        </LinearLayout>
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

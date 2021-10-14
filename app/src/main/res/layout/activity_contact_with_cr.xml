@@ -97,6 +97,7 @@
                             android:maxLines="1"
                             android:padding="@dimen/textPad"
                             android:text="Email"
+                            android:textIsSelectable="true"
                             android:textColor="@color/normalTextColor"
                             android:textSize="@dimen/normal_text" />
 
@@ -106,6 +107,7 @@
                             android:layout_height="wrap_content"
                             android:padding="@dimen/textPad"
                             android:text="Phone"
+                            android:textIsSelectable="true"
                             android:textColor="@color/normalTextColor"
                             android:textSize="@dimen/normal_text" />
 
@@ -129,6 +131,7 @@
                             android:layout_height="wrap_content"
                             android:padding="@dimen/textPad"
                             android:text="Student ID:"
+                            android:textIsSelectable="true"
                             android:textColor="@color/normalTextColor"
                             android:textSize="@dimen/normal_text" />
 

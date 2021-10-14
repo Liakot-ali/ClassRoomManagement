@@ -217,7 +217,6 @@ public class MenuActivitySide extends AppCompatActivity implements NavigationVie
                 break;
 
             case R.id.sign_out:
-                //TODO
                 AlertDialog.Builder dialog = new AlertDialog.Builder(this);
                 dialog.setTitle("Are you sure?");
                 dialog.setMessage("Do you want to log out?");
