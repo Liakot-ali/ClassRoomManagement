@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Class Room Management</string>
+    <string name="app_name">Class Room</string>
     <string name="signInButton">Sign In</string>
     <string name="registerButton">Register</string>
     <string name="updateButton">Update</string>
