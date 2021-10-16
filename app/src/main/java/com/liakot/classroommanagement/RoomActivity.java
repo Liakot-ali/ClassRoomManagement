@@ -234,7 +234,7 @@ public class RoomActivity extends AppCompatActivity {
     private void MakeEmpty(String roomNo, String crUniqueId) {
 
         final DatabaseReference crRef = database.getReference("Student").child("User").child(crUniqueId).child("MyRoom").child(roomNo);
-        RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "", "", "", "");
+        RoomActivityClass newRoom = new RoomActivityClass(roomNo, "Empty", "", "", "", "", "", "", "", "", "", "");
         floorRef.child("RoomNo:" + roomNo).setValue(newRoom).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

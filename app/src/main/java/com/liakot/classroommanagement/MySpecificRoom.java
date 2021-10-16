@@ -38,6 +38,7 @@ public class MySpecificRoom extends AppCompatActivity {
         emptyRoomBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //TODO----make the room empty
                 AlertDialog.Builder dialog = new AlertDialog.Builder(MySpecificRoom.this);
                 dialog.setTitle("Are You Sure?");
@@ -54,7 +55,8 @@ public class MySpecificRoom extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful())
                                 {
-                                    roomRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    RoomActivityClass emptyRoom = new RoomActivityClass(roomNoSt, "Empty", "", "", "", "", "", "", "" , "", "", "");
+                                    roomRef.setValue(emptyRoom).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             Toast.makeText(MySpecificRoom.this, "You remove the room", Toast.LENGTH_SHORT).show();

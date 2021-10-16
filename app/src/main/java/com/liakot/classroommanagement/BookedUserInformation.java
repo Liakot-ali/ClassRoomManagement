@@ -47,6 +47,7 @@ public class BookedUserInformation extends AppCompatActivity {
     TextView toolbarTextView, bookingStartTime, bookingEndTime, totalClassTime;
 
     int firstHour, firstMinute, secondHour, secondMinute;
+    boolean validTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,21 +95,10 @@ public class BookedUserInformation extends AppCompatActivity {
                     bookingCourseCode.clearFocus();
                     bookingStartTime.clearFocus();
                     bookingEndTime.clearFocus();
-                } else if (startTime.isEmpty()) {
-                    bookingStartTime.setError("Enter class start time");
-                    bookingStartTime.requestFocus();
-                    bookingCourseName.clearFocus();
-                    bookingCourseCode.clearFocus();
-                    bookingCourseTeacher.clearFocus();
-                    bookingEndTime.clearFocus();
-                } else if (endTime.isEmpty()) {
-                    bookingEndTime.setError("Enter class end time");
-                    bookingEndTime.requestFocus();
-                    bookingCourseName.clearFocus();
-                    bookingCourseCode.clearFocus();
-                    bookingCourseTeacher.clearFocus();
-                    bookingStartTime.clearFocus();
-                } else {
+                } else if(!validTime) {
+                    Toast.makeText(BookedUserInformation.this, "Enter valid class time", Toast.LENGTH_SHORT).show();
+                }
+                else{
                     progressBar.setVisibility(View.VISIBLE);
                     String userUniqueId = mAuth.getUid();
                     assert userUniqueId != null;
@@ -281,11 +271,21 @@ public class BookedUserInformation extends AppCompatActivity {
         long start = TimeInMills(startTimeSt);
         long end = TimeInMills(endTimeSt);
         long time = end - start;
-        if(time<0)
+
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm a");
+
+        String presentTime = format.format(date);
+
+        long currentTime = TimeInMills(presentTime);
+
+        if(time<=0 || currentTime>end)
         {
+            validTime = false;
             return "Invalid class time";
         }
         else{
+            validTime = true;
             time = time / 1000;
             long hour = time / 3600;
             time = time % 3600;
@@ -303,7 +303,7 @@ public class BookedUserInformation extends AppCompatActivity {
         String[] t1 = time1[1].split(" ");
         endMinute = Long.parseLong(t1[0]);
 
-        if(t1[1].toLowerCase().equals("pm") && !time1[0].equals("12"))
+        if(t1[1].equalsIgnoreCase("pm") && !time1[0].equals("12"))
         {
             endHour += 12;
         }
