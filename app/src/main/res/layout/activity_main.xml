@@ -110,7 +110,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -128,7 +129,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:minHeight="48dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -143,7 +145,8 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/small_text"
                     android:textColor="@color/buttonBackgroundColor"
-                    android:text="Remember Me" />
+                    android:text="Remember Me"
+                    android:minHeight="48sp"/>
             </LinearLayout>
 
 

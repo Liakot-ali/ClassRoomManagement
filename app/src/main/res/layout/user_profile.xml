@@ -53,10 +53,11 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:padding="@dimen/textPad"
-                            android:textIsSelectable="true"
                             android:text="Name"
                             android:textColor="@color/normalTextColor"
-                            android:textSize="@dimen/normal_text" />
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/normal_text"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                         <TextView
                             android:id="@+id/userEmail"
@@ -65,10 +66,11 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:padding="@dimen/textPad"
-                            android:textIsSelectable="true"
                             android:text="Email"
                             android:textColor="@color/normalTextColor"
-                            android:textSize="@dimen/normal_text" />
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/normal_text"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                         <TextView
                             android:id="@+id/userPhoneNumber"
@@ -76,9 +78,10 @@
                             android:layout_height="wrap_content"
                             android:padding="@dimen/textPad"
                             android:text="Phone"
-                            android:textIsSelectable="true"
                             android:textColor="@color/normalTextColor"
-                            android:textSize="@dimen/normal_text" />
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/normal_text"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                     </LinearLayout>
                     <View
@@ -100,9 +103,10 @@
                             android:layout_height="wrap_content"
                             android:padding="@dimen/textPad"
                             android:text="Student ID:"
-                            android:textIsSelectable="true"
                             android:textColor="@color/normalTextColor"
-                            android:textSize="@dimen/normal_text" />
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/normal_text"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                         <TextView
                             android:id="@+id/userDepartment"
@@ -110,9 +114,10 @@
                             android:layout_height="wrap_content"
                             android:padding="@dimen/textPad"
                             android:text="Department"
-                            android:textIsSelectable="true"
                             android:textColor="@color/normalTextColor"
-                            android:textSize="@dimen/normal_text" />
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/normal_text"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -145,10 +150,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/textPad"
-                            android:textIsSelectable="true"
                             android:text="Session:"
                             android:textColor="@color/normalTextColor"
-                            android:textSize="@dimen/normal_text" />
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/normal_text"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                     </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,7 @@ import java.util.Date;
 public class MyRoomActivity extends AppCompatActivity {
     ListView myRoomList;
     Toolbar toolbar;
+    TextView noRoom;
 
     BaseAdapter adapter;
     FirebaseDatabase database;
@@ -46,6 +48,7 @@ public class MyRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_room);
+
         InitializeAll();
 
         String userUniqueId = mAuth.getUid();
@@ -70,6 +73,7 @@ public class MyRoomActivity extends AppCompatActivity {
 
         Adapter();
         myRoomList.setAdapter(adapter);
+
 
         myRoomList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -103,6 +107,7 @@ public class MyRoomActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         myRoomList = findViewById(R.id.myRoomListView);
+        noRoom = findViewById(R.id.myRoomNoRoomTextView);
         arrayList = new ArrayList<>();
 
     }
@@ -114,6 +119,14 @@ public class MyRoomActivity extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             @Override
             public int getCount() {
+                if(arrayList.size() == 0)
+                {
+                    //---------If no booked room-------
+                    noRoom.setVisibility(View.VISIBLE);
+                }
+                else{
+                    noRoom.setVisibility(View.GONE);
+                }
                 return arrayList.size();
             }
 

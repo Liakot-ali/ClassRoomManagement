@@ -3,7 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/activity_academic_building1.xml" value="0.27076923076923076" />
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/activity_academic_building2.xml" value="0.275" />
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/activity_academic_building3.xml" value="0.27076923076923076" />
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/activity_academic_building4.xml" value="0.275" />
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/activity_booked__information.xml" value="0.27076923076923076" />
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/activity_cr_contact.xml" value="0.27076923076923076" />
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/activity_main.xml" value="0.27076923076923076" />
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/activity_my_room.xml" value="0.27076923076923076" />
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/activity_my_specific_room.xml" value="0.27076923076923076" />
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/activity_room.xml" value="0.27076923076923076" />
         <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/activity_wajed_building.xml" value="0.264" />
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/cr_contact_view.xml" value="0.27076923076923076" />
+        <entry key="..\:/All App/ClassRoomManagement/app/src/main/res/layout/user_profile.xml" value="0.27076923076923076" />
       </map>
     </option>
   </component>

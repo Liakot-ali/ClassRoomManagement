@@ -38,16 +38,13 @@ public class CrContact extends AppCompatActivity {
     ListView crContactListView;
     Toolbar toolbar;
     ArrayList<AddUserInformation> arrayList;
+    TextView noContact;
 
     FirebaseDatabase database;
     FirebaseAuth mAuth;
     BaseAdapter adapter;
     DatabaseReference userRef;
-//    String[] crName = {"Mostakim Ara", "Shahariar Shishir", "Mostakim Ara", "Shahariar Shishir", "Mostakim Ara", "Shahariar Shishir", "Mostakim Ara", "Shahariar Shishir"};
-//    String[] department = {"aknflakd", "lafjirks", "abfkdj", "aknflakd", "lafjirks", "abfkdj", "aknflakd", "lafjirks"};
-//    String[] level = {"1", "2", "1", "2", "1", "2", "1", "2"};
-//    String[] semester = {"I", "II", "I", "II", "I", "II", "I", "II"};
-//    String[] contact = {"1234568", "1465484564", "1234568", "1465484564", "1234568", "1465484564", "1234568", "1465484564"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +73,6 @@ public class CrContact extends AppCompatActivity {
         });
 
         Adapter();
-//        MyAdapter adapter = new MyAdapter(this, crName, department, level, semester, contact);
         crContactListView.setAdapter(adapter);
 
         crContactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -115,6 +111,7 @@ public class CrContact extends AppCompatActivity {
 
         //------------Initialization Section--------
         crContactListView = findViewById(R.id.crContactListView);
+        noContact = findViewById(R.id.contactNoContact);
         arrayList = new ArrayList<>();
 
     }
@@ -127,6 +124,14 @@ public class CrContact extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             @Override
             public int getCount() {
+                //---------If no contact to view------
+                if(arrayList.size() == 0)
+                {
+                    noContact.setVisibility(View.VISIBLE);
+                }
+                else {
+                    noContact.setVisibility(View.GONE);
+                }
                 return arrayList.size();
             }
 
